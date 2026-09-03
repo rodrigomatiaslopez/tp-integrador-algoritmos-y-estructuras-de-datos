@@ -15,9 +15,6 @@ Este trabajo **reemplaza las prácticas y el segundo parcial**. En clase hay min
 Un gestor de catálogo en consola, a elección del grupo, en **uno** de estos tres temas:
 
 | Tema | Producto | Analogía rápida |
-| --- | --- | --- |
-| **Pokédex** | Atlas de Pokémon, equipo de combate e historial | Pokédex + equipo de 6 |
-| **Recetario** | Libro de recetas, menú semanal y cola de preparación | Recetas con sub-recetas |
 | **Biblioteca musical** | Catálogo de canciones, playlists y cola de reproducción | Mini reproductor / biblioteca |
 
 Los tres temas son **la misma consigna con otra piel**. Mismas estructuras, mismas entregas, misma rúbrica. Cambian los nombres del dominio.
