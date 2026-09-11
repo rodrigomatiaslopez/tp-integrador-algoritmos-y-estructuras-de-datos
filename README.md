@@ -10,7 +10,8 @@ Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src
 | PASSINI CAMILA | camilitapass@yahoo.com.ar  | camipass | 44504003 | 3 |
 | LOPEZ RODRIGO MATIAS | rodlopez003@gmail.com | rodrigomatiaslopez | 44790466 | 1 |
 
-**Tema elegido:** Biblioteca musical
+**Tema elegido:** 
+- Biblioteca musical: Elegimos la temática de biblioteca musical para organizar y estructurar un catálogo compuesto por canciones y sus atributos principales.
 
 ## Cómo ejecutar
 
