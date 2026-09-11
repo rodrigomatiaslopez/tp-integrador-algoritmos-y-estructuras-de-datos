@@ -12,18 +12,14 @@ Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones c
 Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacionan catálogo, colección principal, pila y cola.
 
 - **Item de catalogo**: La lista general del catálogo (permite agregar/quitar canciones) y los diccionarios de cada canción.
-- **Mutable**: Lista de las canciones.
-- **Inmutable**: Los strings (textos) con los nombres de títulos y artistas (EJ: {"titulo"}, {"artista"}).
-
-- **Relacion (catalogo, coleccion principal y cola)**:
-  * Catálogo / Colección principal: Lista que almacena todos los ítems disponibles.
-  * Pila y cola: Se usarán más adelante para gestionar historiales y filas de reproducción.
+- **Mutable**: Lista de las canciones. Son mutables para permitir la manipulación dinámica de los datos, pudiendo agregar o quitar elementos del catálogo.
+- **Inmutable**: Los strings (textos) con los nombres de títulos y artistas (EJ: {"titulo"}, {"artista"}). Son inmutables para proteger la integridad de la información original.
 
 ```text
 [ Menú / CLI ]
       │
       ▼
-[ Catálogo ] (Colección Principal - Lista)
+[ Fonoteca ] (Colección Principal - Lista)
       │
       ├── [ Canción 1 ] (Diccionario mutable: título, artista, duración)
       ├── [ Canción 2 ] (Diccionario mutable: título, artista, duración)
