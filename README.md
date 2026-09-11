@@ -4,11 +4,11 @@ Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src
 
 ## Integrantes
 
-| Nombre | Mail | GitHub |
+| Nombre | Mail | GitHub | DNI | Comisión |
 | --- | --- | --- |
-| BLANCO EMILIANO | emilianonicblanco@gmail.com | Longchamps27 |
-| LOPEZ RODRIGO MATIAS | rodlopez003@gmail.com | rodrigomatiaslopez |
-| PASSINI CAMILA | camilitapass@yahoo.com.ar  | camipass|
+| BLANCO EMILIANO | emilianonicblanco@gmail.com | Longchamps27 | 37198153 | 3 |
+| PASSINI CAMILA | camilitapass@yahoo.com.ar  | camipass| 44504003 | 3 |
+| LOPEZ RODRIGO MATIAS | rodlopez003@gmail.com | rodrigomatiaslopez | 44790466 | 1 |
 
 **Tema elegido:** Biblioteca musical
 
