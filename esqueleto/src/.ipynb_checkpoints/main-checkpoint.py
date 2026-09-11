@@ -1,5 +1,4 @@
 from config import TEMA
-from dominio.Fonoteca import fonoteca
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -47,7 +46,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-def listar_canciones():
-    for cancion in fonoteca:
-        print(f"{cancion["nombre"]} | {cancion["autor"]} | {cancion["album"]} | {cancion["genero"]}")
