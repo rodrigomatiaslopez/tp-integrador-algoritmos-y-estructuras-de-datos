@@ -17,10 +17,10 @@ Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src
 Desde la raíz del repo, con Python 3.10 o superior:
 
 ```text
-python -m src.main
+python esqueleto/src/main.py
 ```
 
-En Windows, si `python` no anda: `py -3 -m src.main`.
+En Windows, si `python` no anda: `python esqueleto/src/main.py`.
 
 Solo biblioteca estándar. No hay `requirements.txt` a propósito.
 
