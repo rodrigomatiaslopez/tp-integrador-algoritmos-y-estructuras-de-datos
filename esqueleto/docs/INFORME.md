@@ -4,8 +4,8 @@ Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones c
 
 ## 1. Grupo y tema
 
-- Tema: Biblioteca de Musica
-- Por qué lo eligieron (5–8 líneas): Elegimos el tema de biblioteca musical para este trabajo práctico porque nos pareció una opción muy interesante y cercana a la realidad para aplicar los conceptos básicos de programación. Nos facilita la tarea de organizar elementos cotidianos, como las canciones, agrupando de forma ordenada sus atributos principales como el título, el artista y la duración. Además, consideramos que modelar un catálogo de música hace que el sistema sea más intuitivo de estructurar, permitiéndonos practicar de manera eficiente el manejo de colecciones y la interacción por consola que pide la materia.
+- **Tema:** Biblioteca de Musica
+- **Por qué lo eligieron (5–8 líneas):** Elegimos el tema de biblioteca musical para este trabajo práctico porque nos pareció una opción muy interesante y cercana a la realidad para aplicar los conceptos básicos de programación. Nos facilita la tarea de organizar elementos cotidianos, como las canciones, agrupando de forma ordenada sus atributos principales como el título, el artista y la duración. Además, consideramos que modelar un catálogo de música hace que el sistema sea más intuitivo de estructurar, permitiéndonos practicar de manera eficiente el manejo de colecciones y la interacción por consola que pide la materia.
 
 ## 2. Modelo
 
