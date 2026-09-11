@@ -4,15 +4,31 @@ Completar y hacer crecer en cada entrega. No hace falta prosa larga: oraciones c
 
 ## 1. Grupo y tema
 
-- Tema:
-- Por qué lo eligieron (5–8 líneas):
+- Tema: Biblioteca de Musica
+- Por qué lo eligieron (5–8 líneas): Elegimos el tema de biblioteca musical para este trabajo práctico porque nos pareció una opción muy interesante y cercana a la realidad para aplicar los conceptos básicos de programación. Nos facilita la tarea de organizar elementos cotidianos, como las canciones, agrupando de forma ordenada sus atributos principales como el título, el artista y la duración. Además, consideramos que modelar un catálogo de música hace que el sistema sea más intuitivo de estructurar, permitiéndonos practicar de manera eficiente el manejo de colecciones y la interacción por consola que pide la materia.
 
 ## 2. Modelo
 
 Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacionan catálogo, colección principal, pila y cola.
 
+- Item de catalogo: La lista general del catálogo (permite agregar/quitar canciones) y los diccionarios de cada canción.
+- Mutable: Lista de las canciones.
+- Inmutable: Los strings (textos) con los nombres de títulos y artistas (EJ: {"titulo"}, {"artista"}).
+
+- Relacion (catalogo, coleccion principal y cola):
+  ```text
+  * Catálogo / Colección principal: Lista que almacena todos los ítems disponibles.
+  *  Pila y cola: Se usarán más adelante para gestionar historiales (pila, tipo LIFO) y filas de reproducción (cola, tipo FIFO).
+  ```
 ```text
-(pueden pegar un diagrama ASCII o una lista de clases)
+[ Menú / CLI ]
+      │
+      ▼
+[ Catálogo ] (Colección Principal - Lista)
+      │
+      ├── [ Canción 1 ] (Diccionario mutable: título, artista, duración)
+      ├── [ Canción 2 ] (Diccionario mutable: título, artista, duración)
+      └── ...
 ```
 
 ## 3. Recursión (E2)
