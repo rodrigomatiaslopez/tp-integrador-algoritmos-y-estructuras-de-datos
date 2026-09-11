@@ -17,7 +17,7 @@ Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacio
 
 - **Relacion (catalogo, coleccion principal y cola)**:
   * Catálogo / Colección principal: Lista que almacena todos los ítems disponibles.
-  * Pila y cola: Se usarán más adelante para gestionar historiales (pila, tipo LIFO) y filas de reproducción (cola, tipo FIFO).
+  * Pila y cola: Se usarán más adelante para gestionar historiales y filas de reproducción.
 
 ```text
 [ Menú / CLI ]
