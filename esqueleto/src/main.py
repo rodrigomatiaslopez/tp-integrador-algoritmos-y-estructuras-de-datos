@@ -7,6 +7,9 @@ TEMAS = {
     "musica": "Biblioteca musical",
 }
 
+def listar_canciones():
+    for cancion in fonoteca:
+        print(f"{cancion["nombre"]} | {cancion["autor"]} | {cancion["album"]} | {cancion["genero"]}")
 
 def pendiente():
     print("Todavía no está implementado. Completar en la entrega que corresponde.")
@@ -63,7 +66,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-def listar_canciones():
-    for cancion in fonoteca:
-        print(f"{cancion["nombre"]} | {cancion["autor"]} | {cancion["album"]} | {cancion["genero"]}")
