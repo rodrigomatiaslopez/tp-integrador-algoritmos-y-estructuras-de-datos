@@ -11,6 +11,24 @@ def listar_canciones():
     for cancion in fonoteca:
         print(f"{cancion["nombre"]} | {cancion["autor"]} | {cancion["album"]} | {cancion["genero"]}")
 
+def operacion_recursiva ():
+    
+    for cancion in fonoteca: #recorre la lista de canciones a ver si tiene distintas versiones
+        print (f"* {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["genero"]}")
+        
+        if "versiones" in cancion and cancion ["versiones"]:
+            
+            def recorrer (lista_versiones): #funcion recursiva para recorrer la lista
+                if not lista_versiones:
+                    return
+                
+                version = lista_versiones [0]
+                print (f"  ---- {version ["nombre"]} | {version ["autor"]} | {version ["album"]} | {version ["genero"]}")
+                
+            recorrer (cancion ["versiones"])
+            print ()
+
+
 def pendiente():
     print("Todavía no está implementado. Completar en la entrega que corresponde.")
 
@@ -37,7 +55,7 @@ def main():
         return
 
     opcion = None
-    while opcion != "0":
+    while opcion != 0:
         mostrar_menu()
         opcion = int (input("> ").strip())
         if opcion == 0:
@@ -51,7 +69,7 @@ def main():
         elif opcion == 4:
             pendiente ()
         elif opcion == 5:
-            pendiente ()
+            operacion_recursiva ()
         elif opcion == 6:
             pendiente ()
         elif opcion == 7:
