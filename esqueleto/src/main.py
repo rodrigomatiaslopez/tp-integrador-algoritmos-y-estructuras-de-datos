@@ -14,9 +14,9 @@ def listar_canciones():
 def operacion_recursiva ():
     
     for cancion in fonoteca: #recorre la lista de canciones a ver si tiene distintas versiones
-        print (f"* {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["genero"]}")
-        
+       
         if "versiones" in cancion and cancion ["versiones"]:
+            print (f"* {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["genero"]}")
             
             def recorrer (lista_versiones): #funcion recursiva para recorrer la lista
                 if not lista_versiones:
@@ -24,7 +24,7 @@ def operacion_recursiva ():
                 
                 version = lista_versiones [0]
                 print (f"  ---- {version ["nombre"]} | {version ["autor"]} | {version ["album"]} | {version ["genero"]}")
-                
+                              
             recorrer (cancion ["versiones"])
             print ()
 
