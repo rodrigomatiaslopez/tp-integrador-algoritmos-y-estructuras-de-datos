@@ -36,11 +36,27 @@ def main():
     opcion = None
     while opcion != "0":
         mostrar_menu()
-        opcion = input("> ").strip()
-        if opcion == "0":
+        opcion = int (input("> ").strip())
+        if opcion == 0:
             print("Chau.")
-        elif opcion in {"1", "2", "3", "4", "5", "6", "7", "8", "9"}:
-            pendiente()
+        elif opcion == 1:
+            listar_canciones ()
+        elif opcion == 2:
+            pendiente ()
+        elif opcion == 3:
+            pendiente ()
+        elif opcion == 4:
+            pendiente ()
+        elif opcion == 5:
+            pendiente ()
+        elif opcion == 6:
+            pendiente ()
+        elif opcion == 7:
+            pendiente ()
+        elif opcion == 8:
+            pendiente ()
+        elif opcion == 9:
+            pendiente ()
         else:
             print("Opción inválida.")
 
