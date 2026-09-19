@@ -3,7 +3,7 @@ fonoteca = [
     {"nombre" : "Hombre en U", "autor": "DIVIDIDOS", "album": "Amapola del 66", "genero": "Rock"},
     {"nombre" : "El tren del cielo", "autor": "Soledad Pastorutti", "album": "Libre", "genero": "Folklore"},
     {"nombre" : "Redemption Song", "autor": "Bob Marley and The Wailers", "album": "Uprising", "genero": "Roots Reggae"},
-    {"nombre" : "The Trooper", "autor": "Iron Maiden", "album": "Piece of Mind", "genero": "Heavy Metal"}
+    {"nombre" : "The Trooper", "autor": "Iron Maiden", "album": "Piece of Mind", "genero": "Heavy Metal"},
     {"nombre" : "De musica ligera", "autor" : "Soda Stereo", "album" : "Cancion Animal", "genero" : "Rock", "versiones": [
         {"nombre" : "De musica ligera (Unplugged)", "autor" : "Soda Stereo", "album" : "Comfort y Musica Para Volar", "genero" : "Rock"}]},
     {"nombre" : "Jijiji", "autor" : "Patricio Rey y sus Redonditos de Ricota", "album" : "Un Baion para el Ojo Idiota", "genero" : "Rock", "versiones": [
