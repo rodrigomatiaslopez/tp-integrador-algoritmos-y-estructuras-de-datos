@@ -1,5 +1,5 @@
 from config import TEMA
-from dominio.fonoteca import Fonoteca
+from dominio.Fonoteca import Fonoteca
 
 TEMAS = {
     "pokedex": "Pokédex",
