@@ -7,7 +7,7 @@ Fecha de esta versión del archivo:
 | Entrega | Fecha | Herramienta (ChatGPT, Cursor, Copilot, otra) | Para qué (diseño, código, debug, docs) | Qué pegaron o generaron | Qué reescribieron / revisaron a mano | Integrante |
 | --- | --- | --- | --- | --- | --- | --- |
 | E1 | 11/09/26 | No se usó IA |  |  |  |  |
-| E2 |  |  |  |  |  |  |
+| E2 | 20/09/26 | No se usó IA |  |  |  |  |
 | E3 |  |  |  |  |  |  |
 | E4 |  |  |  |  |  |  |
 | E5 |  |  |  |  |  |  |
