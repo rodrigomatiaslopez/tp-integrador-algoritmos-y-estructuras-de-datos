@@ -1,5 +1,5 @@
 from config import TEMA
-from dominio.Fonoteca import fonoteca
+from dominio.fonoteca import Fonoteca
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -8,25 +8,17 @@ TEMAS = {
 }
 
 def listar_canciones():
-    for cancion in fonoteca:
-        print(f"{cancion["nombre"]} | {cancion["autor"]} | {cancion["album"]} | {cancion["genero"]}")
+    fonoteca = Fonoteca()
+    fonoteca.listar()
 
-def operacion_recursiva ():
-    
-    for cancion in fonoteca: #recorre la lista de canciones a ver si tiene distintas versiones
-       
-        if "versiones" in cancion and cancion ["versiones"]:
-            print (f"* {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["nombre"]} | {cancion ["genero"]}")
-            
-            def recorrer (lista_versiones): #funcion recursiva para recorrer la lista
-                if not lista_versiones:
-                    return
-                
-                version = lista_versiones [0]
-                print (f"  ---- {version ["nombre"]} | {version ["autor"]} | {version ["album"]} | {version ["genero"]}")
-                              
-            recorrer (cancion ["versiones"])
-            print ()
+def operacion_recursiva (): 
+    fonoteca = Fonoteca()
+    idc = None
+    while idc == None: #Elegimos la cancion de la cual queremos ver las versiones existentes y se imprime el resultado
+        print("Ingrese el id de la cancion de la cual desee conocer las versiones: ")
+        idc = int (input())
+        resultado_recursivo = fonoteca.versiones_deriv(idc)
+        print(resultado_recursivo)
 
 
 def pendiente():

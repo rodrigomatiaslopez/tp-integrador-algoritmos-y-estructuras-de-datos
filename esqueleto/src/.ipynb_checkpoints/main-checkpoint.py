@@ -1,10 +1,24 @@
 from config import TEMA
+from dominio.fonoteca import Fonoteca
 
 TEMAS = {
     "pokedex": "Pokédex",
     "recetario": "Recetario",
     "musica": "Biblioteca musical",
 }
+
+def listar_canciones():
+    fonoteca = Fonoteca()
+    fonoteca.listar()
+
+def operacion_recursiva (): 
+    fonoteca = Fonoteca()
+    idc = None
+    while idc == None: #Elegimos la cancion de la cual queremos ver las versiones existentes y se imprime el resultado
+        print("Ingrese el id de la cancion de la cual desee conocer las versiones: ")
+        idc = int (input())
+        resultado_recursivo = fonoteca.versiones_deriv(idc)
+        print(resultado_recursivo)
 
 
 def pendiente():
@@ -33,13 +47,29 @@ def main():
         return
 
     opcion = None
-    while opcion != "0":
+    while opcion != 0:
         mostrar_menu()
-        opcion = input("> ").strip()
-        if opcion == "0":
+        opcion = int (input("> ").strip())
+        if opcion == 0:
             print("Chau.")
-        elif opcion in {"1", "2", "3", "4", "5", "6", "7", "8", "9"}:
-            pendiente()
+        elif opcion == 1:
+            listar_canciones ()
+        elif opcion == 2:
+            pendiente ()
+        elif opcion == 3:
+            pendiente ()
+        elif opcion == 4:
+            pendiente ()
+        elif opcion == 5:
+            operacion_recursiva ()
+        elif opcion == 6:
+            pendiente ()
+        elif opcion == 7:
+            pendiente ()
+        elif opcion == 8:
+            pendiente ()
+        elif opcion == 9:
+            pendiente ()
         else:
             print("Opción inválida.")
 
