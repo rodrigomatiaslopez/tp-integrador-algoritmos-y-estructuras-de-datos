@@ -75,16 +75,19 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 
 * **Caso de prueba 4: Ejecución de la operación recursiva (con ID válido)**
 - Seleccionar la opción `5` e ingresar el ID numérico de una canción que posea versiones derivadas (por ejemplo, una canción original que tenga *covers* o *remixes* asociados).
-- *Resultado:* El sistema procesa la función recursiva de tu compañero (`versiones_deriv`), recorriendo las relaciones del archivo de datos y devolviendo la lista con todas las versiones derivadas encadenadas.
+- *Resultado:* El sistema procesa la función recursiva de tu compañero (`versiones_deriv`), recorriendo las relaciones del archivo de datos y devolviendo la lista con todas las versiones derivadas encadenadas.     Ejemplo `1`
   ```text
-  
+  1 | De musica ligera |Soda Stereo |Cancion Animal |Rock
+  62 |De musica ligera (Unplugged) |Soda Stereo |Comfort y Musica Para Volar | Rock
   ```
 
 
 * **Caso de prueba 5: Operación recursiva (con ID inexistente o sin versiones)**
 -  Seleccionar la opción `5` e ingresar un ID de canción que no exista en el sistema o que no tenga ninguna versión derivada registrada.
 - *Resultado:* El sistema detecta el caso base de la recursividad sin arrojar errores y retorna una lista vacía o un mensaje indicando que no hay derivados.
-- 
+  ```text
+    4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+  ```
 
 
 * **Caso de prueba 6: Ingreso de opción de menú inválida**
