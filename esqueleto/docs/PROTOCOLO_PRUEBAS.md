@@ -26,9 +26,40 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 
 #E2
 * **Caso de prueba 1: Arranque y visualización del menú**
-* *Descripción:* Verificar que al ejecutar el programa se cargue correctamente el archivo de configuración y se muestre en pantalla el título y las opciones del menú principal correspondientes al tema música.
-* *Resultado esperado:* El menú se despliega indicando
+* Verificar que al ejecutar el programa se cargue correctamente el archivo de configuración y se muestre en pantalla el título y las opciones del menú principal correspondientes al tema música.
+* *Resultado:* El menú se despliega indicando
   ```text
   === Biblioteca musical — AyED C2 2026 ===
+  1. Listar catálogo
+  2. Ver detalle
+  3. Buscar
+  4. Ordenar
+  5. Operación recursiva
+  6. Colección principal (equipo / menú / playlist)
+  7. Historial (pila)
+  8. Cola
+  9. Guardar / cargar archivos
+  0. Salir
   ```
   junto a sus respectivas opciones numéricas.
+
+
+* **Caso de prueba 2: Listar el catálogo completo**
+* Seleccionar la opción `1` del menú para listar las canciones disponibles en la fonoteca.
+* *Resultado:* Se imprimen en la consola todas las canciones cargadas inicialmente, mostrando de forma legible su nombre, autor, álbum y género.
+```text
+  1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+  2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+  3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
+  4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+  5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+  6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+  12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+  13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+  16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+  51 | Billie Jean | Michael Jackson | Thriller | Pop
+  52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+  61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
+  62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+```
+
