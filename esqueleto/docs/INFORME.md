@@ -28,10 +28,26 @@ Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacio
 
 ## 3. Recursión (E2)
 
-- Función:
-- Caso base:
-- Caso recursivo:
-- Traza de un ejemplo real del dataset:
+* **Función:** Permite buscar de forma encadenada todas las versiones derivadas (covers, remixes, lives, etc.) a partir de una canción original, utilizando los datos provistos en el archivo CSV de relaciones.
+
+
+* **Caso base:** La función busca las versiones asociadas a un ID y **no encuentra ningún registro derivado**. En ese momento, la función detiene las llamadas recursivas y retorna una lista vacía, evitando un bucle infinito.
+
+
+* **Caso recursivo:** Se ejecuta cuando la función encuentra que una canción tiene una o más versiones asociadas en el archivo de datos. Por cada coincidencia encontrada, **la función se vuelve a invocar a sí misma** pasando el ID de la nueva versión derivada para explorar si a su vez posee más ramificaciones, acumulando los resultados.
+
+
+#### **Traza de un ejemplo real del dataset:**
+* **Punto de partida:** Tomamos como canción de origen el ID `1` (*"De música ligera"* de Soda Stereo).
+* **Llamada 1:** Se ejecuta `fonoteca.versiones_deriv(1)`. El sistema busca en el archivo `versiones.csv` y detecta que la canción con ID `62` (*"De música ligera (Unplugged)"*) es una versión derivada de la original. Como encontró un derivado, se autoinvoca: `self.versiones_deriv(62)`.
+* **Llamada 2 (Recursiva):** Se ejecuta `self.versiones_deriv(62)`. El sistema busca si la canción ID `62` tiene otras versiones derivadas a partir de ella.
+* **Llegada al caso base:** Al no encontrar más registros derivados para la ID `62`, la función alcanza el caso base.
+* **Resultado final:** La función devuelve la lista consolidada con la cadena de versiones encontradas a partir del ID inicial.
+
+
+---
+
+¡Copia este texto directamente en tu informe y ya lo vas a tener recuperado y prolijo para volver a hacer el commit y el `push` sin renegar!
 
 ## 4. TADs (E3)
 
