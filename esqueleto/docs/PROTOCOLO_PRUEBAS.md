@@ -28,6 +28,7 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 * **Caso de prueba 1: Arranque y visualización del menú**
 * *Descripción:* Verificar que al ejecutar el programa se cargue correctamente el archivo de configuración y se muestre en pantalla el título y las opciones del menú principal correspondientes al tema música.
 * *Resultado esperado:* El menú se despliega indicando
-  ```text === Biblioteca musical — AyED C2 2026 ===
+  ```text
+  === Biblioteca musical — AyED C2 2026 ===
   ```
   junto a sus respectivas opciones numéricas.
