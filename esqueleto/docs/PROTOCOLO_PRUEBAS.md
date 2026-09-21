@@ -92,7 +92,7 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 
 * **Caso de prueba 6: Ingreso de opción de menú inválida**
 - Ingresar un número o letra que no esté contemplado en el menú principal (por ejemplo, escribir `99`).
-- *Resultado esperado:* El sistema captura la opción por el bloque `else`, muestra el mensaje
+- *Resultado:* El sistema captura la opción por el bloque `else`, muestra el mensaje
   ```text
   Opción inválida.
   ```
@@ -100,7 +100,7 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 
 * **Caso de prueba 7: Salida correcta del programa**
 -  Seleccionar la opción `0` del menú principal para salir del sistema.
-- *Resultado esperado:* El programa imprime el mensaje de salida
+- *Resultadoo:* El programa imprime el mensaje de salida
    ```text
   Chau.
   ```
@@ -108,7 +108,7 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 
 * **Caso de prueba 8: Comprobación de configuración del tema**
 - Modificar temporalmente el archivo `src/config.py` cambiando el valor de `TEMA` por un texto erróneo o vacío, e intentar correr el programa.
-- *Resultado esperado:* El sistema valida la condición inicial del `main`, muestra la advertencia
+- *Resultado:* El sistema valida la condición inicial del `main`, muestra la advertencia
   ```text
   Seteá TEMA en src/config.py: 'pokedex', 'recetario' o 'musica'.
   ```
