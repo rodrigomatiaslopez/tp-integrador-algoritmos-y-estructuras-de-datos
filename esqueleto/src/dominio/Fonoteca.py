@@ -40,7 +40,7 @@ class Fonoteca:
             return None
             #print("Esa cancion no existe")
 
-def versiones_deriv(self, idc_ori): #Le pasamos la id de la cancion original para ver si tiene versiones
+    def versiones_deriv(self, idc_ori): #Le pasamos la id de la cancion original para ver si tiene versiones
         df_ver = self.versiones_list
         _versiones = self.buscar(idc_ori)
         if not _versiones: #CASO BASE
