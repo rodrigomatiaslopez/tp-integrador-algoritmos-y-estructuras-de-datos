@@ -23,3 +23,11 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 | P13 | E5 | Guardar CSV, salir, volver a entrar |  | los datos siguen |  |  |
 | P14 | E5 | Guardar binario y modificar un registro por id |  | al recargar, ese campo cambió |  |  |
 | P15 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido |  |  |
+
+#E2
+* **Caso de prueba 1: Arranque y visualización del menú**
+* *Descripción:* Verificar que al ejecutar el programa se cargue correctamente el archivo de configuración y se muestre en pantalla el título y las opciones del menú principal correspondientes al tema música.
+* *Resultado esperado:* El menú se despliega indicando
+  ```text === Biblioteca musical — AyED C2 2026 ===
+  ```
+  junto a sus respectivas opciones numéricas.
