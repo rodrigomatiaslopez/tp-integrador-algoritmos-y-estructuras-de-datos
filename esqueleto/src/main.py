@@ -18,8 +18,8 @@ def operacion_recursiva ():
         print("Ingrese el id de la cancion de la cual desee conocer las versiones: ")
         idc = int (input())
         resultado_recursivo = fonoteca.versiones_deriv(idc)
-        print(resultado_recursivo)
-
+        for can_ver in resultado_recursivo:
+            print(can_ver)
 
 def pendiente():
     print("Todavía no está implementado. Completar en la entrega que corresponde.")
