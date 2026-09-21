@@ -21,6 +21,7 @@ def operacion_recursiva ():
         for can_ver in resultado_recursivo:
             print(can_ver)
 
+
 def pendiente():
     print("Todavía no está implementado. Completar en la entrega que corresponde.")
 
