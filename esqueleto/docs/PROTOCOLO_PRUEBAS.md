@@ -47,7 +47,7 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 * **Caso de prueba 2: Listar el catálogo completo**
 - Seleccionar la opción `1` del menú para listar las canciones disponibles en la fonoteca.
 - *Resultado:* Se imprimen en la consola todas las canciones cargadas inicialmente, mostrando de forma legible su nombre, autor, álbum y género.
-```text
+  ```text
   1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
   2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
   3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
@@ -61,14 +61,14 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
   52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
   61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
   62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
-```
+  ```
 
 
 * **Caso de prueba 3: Menu en proceso**
 - Seleccionar la opción `2`, `3`, `4`, `6`, `7`, `8`, `9` del menú principal.
 - *Resultado:* El sistema responde ejecutando la función `pendiente()`, imprimiendo el mensaje 
   ```text
-    Todavía no está implementado. Completar en la entrega que corresponde.
+  Todavía no está implementado. Completar en la entrega que corresponde.
   ```
   sin romperse ni cerrarse.
 
@@ -86,21 +86,31 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 -  Seleccionar la opción `5` e ingresar un ID de canción que no exista en el sistema o que no tenga ninguna versión derivada registrada.
 - *Resultado:* El sistema detecta el caso base de la recursividad sin arrojar errores y retorna una lista vacía o un mensaje indicando que no hay derivados.
   ```text
-    4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+  4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
   ```
 
 
 * **Caso de prueba 6: Ingreso de opción de menú inválida**
-- Ingresar un número o letra que no esté contemplado en el menú principal (por ejemplo, escribir `99` o una letra `abc`).
-- *Resultado esperado:* El sistema captura la opción por el bloque `else`, muestra el mensaje *"Opción inválida."* y vuelve a desplegar el menú para permitir un nuevo ingreso.
-
+- Ingresar un número o letra que no esté contemplado en el menú principal (por ejemplo, escribir `99`).
+- *Resultado esperado:* El sistema captura la opción por el bloque `else`, muestra el mensaje
+  ```text
+  Opción inválida.
+  ```
+  y vuelve a desplegar el menú para permitir un nuevo ingreso.
 
 * **Caso de prueba 7: Salida correcta del programa**
 -  Seleccionar la opción `0` del menú principal para salir del sistema.
-- *Resultado esperado:* El programa imprime el mensaje de salida (*"Chau."*) y finaliza su ejecución de forma limpia interrumpiendo el bucle principal.
-
+- *Resultado esperado:* El programa imprime el mensaje de salida
+   ```text
+  Chau.
+  ```
+  y finaliza su ejecución de forma limpia interrumpiendo el bucle principal.
 
 * **Caso de prueba 8: Comprobación de configuración del tema**
 - Modificar temporalmente el archivo `src/config.py` cambiando el valor de `TEMA` por un texto erróneo o vacío, e intentar correr el programa.
-- *Resultado esperado:* El sistema valida la condición inicial del `main`, muestra la advertencia *"Seteá TEMA en src/config.py..."* y frena la ejecución para evitar fallos mayores.
+- *Resultado esperado:* El sistema valida la condición inicial del `main`, muestra la advertencia
+  ```text
+  Seteá TEMA en src/config.py: 'pokedex', 'recetario' o 'musica'.
+  ```
+  y frena la ejecución para evitar fallos mayores.
 
