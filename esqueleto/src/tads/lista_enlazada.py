@@ -1,3 +1,6 @@
+from tads.nodo import Nodo
+from excepciones import *
+
 class ListaEnlazada:
     """TAD lista enlazada simple. No usar list de Python por debajo."""
 
