@@ -1,5 +1,5 @@
 from config import TEMA
-from dominio.Fonoteca import Fonoteca
+from dominio.Fonoteca import Fonoteca, Reproductor
 
 TEMAS = {
     "pokedex": "Pokédex",
@@ -27,6 +27,7 @@ def pendiente():
 
 
 def mostrar_menu():
+    Reproductor(catalogo=fonoteca, tope=50)
     nombre = TEMAS.get(TEMA, TEMA or "(sin tema)")
     print()
     print(f"=== {nombre} — AyED C2 2026 ===")
@@ -65,26 +66,29 @@ def main():
             operacion_recursiva ()
         elif opcion == 6:
         # Colección principal con tope (Playlist)
+
+           id_ingresado = int(input("Ingresá el ID de la canción para agregar: ")).strip()
             try:
-                Reproductor.agregar_cancion(nueva_cancion)
-                print(f"✅ '{nueva_cancion}' agregada a tu playlist.")
+                mi_reproductor.agregar_playlist_por_id(id_ingresado)
+                print("✅ Canción agregada exitosamente a tu playlist.")
+            except ValueError:
+                print("❌ Por favor, ingresá un ID numérico válido.")
+            except ItemNoEncontradoError as e:
+                print(f"❌ {e}")
             except ColeccionLlenaError as e:
                 print(f"❌ {e}")
 
         elif opcion == 7:
-            # Historial / Pila (Deshacer)
             try:
-                cancion_anterior = historial.desapilar()
-                print(f"⏮️ Volviendo a escuchar: {cancion_anterior}")
+                cancion_anterior = mi_reproductor.cancion_anterior()
+                print(f"⏮️ Volviendo a escuchar: {cancion_anterior.nombre} - {cancion_anterior.autor}")
             except PilaVaciaError as e:
                 print(f"❌ {e}")
 
         elif opcion == 8:
-            # Cola (Atender próximo turno)
             try:
-                siguiente_cancion = cola_reproduccion.desencolar()
-                print(f"▶️ Sonando ahora: {siguiente_cancion}")
-                historial.apilar(siguiente_cancion)
+                siguiente_cancion = mi_reproductor.cancion_siguiente()
+                print(f"▶️ Sonando ahora: {siguiente_cancion.nombre} - {siguiente_cancion.autor}")
             except ColaVaciaError as e:
                 print(f"❌ {e}")
                 

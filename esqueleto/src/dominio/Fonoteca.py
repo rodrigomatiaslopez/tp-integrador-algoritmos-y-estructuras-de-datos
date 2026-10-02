@@ -19,7 +19,7 @@ from dominio.cancion import Cancion
 from pathlib import Path
 
 from tads import ListaEnlazada, Pila, Cola
-from excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError
+from excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError, ItemNoEncontradoError
 
 class Fonoteca:
     def __init__(self): #Funcion constructora de la Fonoteca, crea la fonoteca como una lista y el versiones.csv como un dataframe
@@ -57,31 +57,54 @@ class Fonoteca:
     
 class Reproductor:
 
-    def __init__ (self, tope = 50) : #constructor de reproductor para la playlist
-        self._playlist = ListaEnlazada ()
-        self._historial = Pila ()
-        self._proximos = Cola ()
+    def __init__ (self, catalogo, tope = 50) : #constructor de reproductor para la playlist
+        self._playlist = ListaEnlazada()
+        self._historial = Pila()
+        self._proximos = Cola()
         self._tope = tope
+        self._fonoteca = catalogo
 
-    def agregar_playlist (self, cancion) : #se agregan canciones a la playlist con tope maximo de 50
-        if self._playlist.tamanio >= self._tope:
-            raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones)")
-        self._playlist.insertar_al_final (cancion)
+    def agregar_playlist(self, id_cancion) : #se agregan canciones a la playlist con tope maximo de 50
+        cancion = self._fonoteca.buscar(id_cancion)
+        if cancion is None:
+            raise ItemNoEncontradoError(f"No se encontró ninguna canción con el ID '{id_cancion}' en el catálogo.")
 
-    def encolar_tema (self, cancion) : #agrega a la cola las proximas canciones
+        elif self._playlist.tamanio() >= self._tope:
+            raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones).")
+        self._playlist.insertar_al_final (id_cancion)
+
+    def encolar_tema(self, cancion) : #agrega a la cola las proximas canciones
+        cancion = self._fonoteca.buscar(id_cancion)
+        if cancion is None:
+            raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")
         self._proximos.encolar (cancion)
 
     def cancion_siguiente (self) : #saca la cancion de la cola y lo guarda en el historial
         cancion = self._proximos.desencolar ()
-        self._historial.apilar (cancion)
+        self._historial.apilar(cancion)
         return cancion
 
     def cancion_anterior (self) : #
-        return self._historial.desapilar ()
+        return self._historial.desapilar()
 
-    def eliminar (self, cancion) :
-        self._playlist.eliminar (cancion)
+    def eliminar(self, id_cancion) :
+        # 1. Buscamos el objeto Cancion original en la Fonoteca
+        cancion = self._catalogo.buscar(id_cancion)
+        if cancion is None:
+            raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")
+            
+        # 2. Delegamos en buscar() de la ListaEnlazada para ver si está en la playlist
+        if self._playlist.buscar(cancion) is None:
+            raise ItemNoEncontradoError("La canción no se encuentra guardada en tu playlist.")
+            
+        # 3. Delegamos en eliminar() de la ListaEnlazada
+        self._playlist.eliminar(cancion)
 
-    def listar (self) :  
-        for p in self._playlist:
-            print (f" {p}")
+    def listar(self) :  
+        if self._playlist.esta_vacia():
+            print("Tu playlist está vacía.")
+            return
+        else:
+            print("--- Mi Playlist ---")
+            for p in self._playlist:
+                print (f" {p}")

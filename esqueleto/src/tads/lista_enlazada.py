@@ -51,7 +51,7 @@ class ListaEnlazada:
             return
 
     def buscar(self, dato):
-        nod_act = self._size
+        nod_act = self._head
         while nod_act is not None:
             if nod_act._dato == dato:
                 return nod_act
@@ -72,6 +72,6 @@ class ListaEnlazada:
         def __next__(self):
             if self._actual is None:
                 raise StopIteration
-            dato = self._actual_dato
+            dato = self._actual._dato
             self._actual = self._actual._next
             return dato
