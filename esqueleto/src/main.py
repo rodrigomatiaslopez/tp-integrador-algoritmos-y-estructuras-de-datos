@@ -1,6 +1,6 @@
 from config import TEMA
 from dominio.Fonoteca import Fonoteca, Reproductor
-from excepciones import .
+from excepciones import *
 
 fonoteca = Fonoteca()
 reproductor = Reproductor(catalogo=fonoteca, tope=50)
@@ -12,6 +12,9 @@ TEMAS = {
 
 def listar_canciones():
     fonoteca.listar()
+
+def mostrar_detalle (id_cancion):
+    fonoteca.mostrar_detalle (id_cancion)
 
 
 def operacion_recursiva (): 
@@ -45,11 +48,14 @@ def mostrar_menu():
 
 
 def main():
+
     if TEMA not in TEMAS:
         print("Seteá TEMA en src/config.py: 'pokedex', 'recetario' o 'musica'.")
         return
 
     opcion = None
+    id_ingresado = None
+
     while opcion != 0:
         mostrar_menu()
         opcion = int (input("> ").strip())
@@ -58,7 +64,8 @@ def main():
         elif opcion == 1:
             listar_canciones ()
         elif opcion == 2:
-            pendiente ()
+            id_cancion = int (input("Ingrese el ID de la cancion: "))
+            mostrar_detalle (id_cancion)
         elif opcion == 3:
             pendiente ()
         elif opcion == 4:
@@ -67,27 +74,31 @@ def main():
             operacion_recursiva ()
         elif opcion == 6:
         # Colección principal con tope (Playlist)
-            id_ingresado = int(input("Ingresá el ID de la canción para agregar: ")).strip()
-            try:
-                reproductor.agregar_playlist_por_id(id_ingresado)
-                print("✅ Canción agregada exitosamente a tu playlist.")
-            except ValueError:
-                print("❌ Por favor, ingresá un ID numérico válido.")
-            except ItemNoEncontradoError as e:
-                print(f"❌ {e}")
-            except ColeccionLlenaError as e:
-                print(f"❌ {e}")
+            while id_ingresado != 0:
+                id_ingresado = int(input("Ingresá el ID de la canción para agregar [0 para finalizar]: "))
+                try:
+                    reproductor.agregar_playlist(id_ingresado)
+                    print("✅ Canción agregada exitosamente a tu playlist.")
+                except ValueError:
+                    print("❌ Por favor, ingresá un ID numérico válido.")
+                except ItemNoEncontradoError as e:
+                    print(f"❌ {e}")
+                except ColeccionLlenaError as e:
+                    print(f"❌ {e}")
 
         elif opcion == 7:
-            try:
-                cancion_anterior = mi_reproductor.cancion_anterior()
-                print(f"⏮️ Volviendo a escuchar: {cancion_anterior.nombre} - {cancion_anterior.autor}")
-            except PilaVaciaError as e:
-                print(f"❌ {e}")
+
+            reproductor.listar ()
+
+            # try:
+            #     cancion_anterior = reproductor.cancion_anterior()
+            #     print(f"⏮️ Volviendo a escuchar: {cancion_anterior.nombre} - {cancion_anterior.autor}")
+            # except PilaVaciaError as e:
+            #     print(f"❌ {e}")
 
         elif opcion == 8:
             try:
-                siguiente_cancion = mi_reproductor.cancion_siguiente()
+                siguiente_cancion = reproductor.cancion_siguiente()
                 print(f"▶️ Sonando ahora: {siguiente_cancion.nombre} - {siguiente_cancion.autor}")
             except ColaVaciaError as e:
                 print(f"❌ {e}")
