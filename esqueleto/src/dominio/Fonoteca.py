@@ -18,6 +18,11 @@ import pandas as pd
 from dominio.cancion import Cancion
 from pathlib import Path
 
+from src.tads.lista_enlazada import ListaEnlazada
+from src.tads.pila import Pila
+from src.tads.cola import Cola
+from ColeccionLlenaError, PilaVaciaError, ColaVaciaError
+
 class Fonoteca:
     def __init__(self): #Funcion constructora de la Fonoteca, crea la fonoteca como una lista y el versiones.csv como un dataframe
         self.fonoteca = []
@@ -52,3 +57,33 @@ class Fonoteca:
                 resultado += self.versiones_deriv(idv_deriv)
         return resultado
     
+class Reproductor:
+
+    def __init__ (self, tope = 50) :
+        self._playlist = ListaEnlazada ()
+        self._historial = Pila ()
+        self._proximos = Cola ()
+        self._tope = tope
+
+    def agregar_playlist (self, cancion) :
+        if self._playlist.tamanio >= self._tope:
+            raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones)")
+        self._playlist.insertar_al_final (cancion)
+
+    def cola_tema (self, cancion) :
+        self._proximos.encolar (cancion)
+
+    def cancion_siguiente (self) :
+        cancion = self._proximos.desencolar ()
+        self._historial.apilar (cancion)
+        return cancion
+
+    def cancion_anterior (self) :
+        return self._historial.desapilar ()
+
+    def eliminar (self, cancion) :
+        self._playlist.eliminar (cancion)
+
+    def listar (self) :  
+        for p in self._canciones:
+            print (f" {p}")
