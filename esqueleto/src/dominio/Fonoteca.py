@@ -59,31 +59,31 @@ class Fonoteca:
     
 class Reproductor:
 
-    def __init__ (self, tope = 50) :
+    def __init__ (self, tope = 50) : #constructor de reproductor para la playlist
         self._playlist = ListaEnlazada ()
         self._historial = Pila ()
         self._proximos = Cola ()
         self._tope = tope
 
-    def agregar_playlist (self, cancion) :
+    def agregar_playlist (self, cancion) : #se agregan canciones a la playlist con tope maximo de 50
         if self._playlist.tamanio >= self._tope:
             raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones)")
         self._playlist.insertar_al_final (cancion)
 
-    def cola_tema (self, cancion) :
+    def encolar_tema (self, cancion) : #agrega a la cola las proximas canciones
         self._proximos.encolar (cancion)
 
-    def cancion_siguiente (self) :
+    def cancion_siguiente (self) : #saca la cancion de la cola y lo guarda en el historial
         cancion = self._proximos.desencolar ()
         self._historial.apilar (cancion)
         return cancion
 
-    def cancion_anterior (self) :
+    def cancion_anterior (self) : #
         return self._historial.desapilar ()
 
     def eliminar (self, cancion) :
         self._playlist.eliminar (cancion)
 
     def listar (self) :  
-        for p in self._canciones:
+        for p in self._playlist:
             print (f" {p}")
