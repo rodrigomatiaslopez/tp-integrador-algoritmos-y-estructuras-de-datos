@@ -1,3 +1,6 @@
+from tads.lista_enlazada import ListaEnlazada
+from excepciones import *
+
 class Cola:
     """TAD cola implementado sobre ListaEnlazada."""
 
