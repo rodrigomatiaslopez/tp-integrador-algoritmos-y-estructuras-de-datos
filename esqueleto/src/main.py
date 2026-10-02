@@ -66,7 +66,7 @@ def main():
         elif opcion == 6:
         # Colección principal con tope (Playlist)
             try:
-                mi_playlist.agregar_cancion(nueva_cancion)
+                Reproductor.agregar_cancion(nueva_cancion)
                 print(f"✅ '{nueva_cancion}' agregada a tu playlist.")
             except ColeccionLlenaError as e:
                 print(f"❌ {e}")
