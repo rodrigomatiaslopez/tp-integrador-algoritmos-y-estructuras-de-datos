@@ -67,7 +67,7 @@ def main():
         elif opcion == 6:
         # Colección principal con tope (Playlist)
 
-           id_ingresado = int(input("Ingresá el ID de la canción para agregar: ")).strip()
+            id_ingresado = int(input("Ingresá el ID de la canción para agregar: ")).strip()
             try:
                 mi_reproductor.agregar_playlist_por_id(id_ingresado)
                 print("✅ Canción agregada exitosamente a tu playlist.")
