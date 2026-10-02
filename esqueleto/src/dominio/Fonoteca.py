@@ -18,8 +18,8 @@ import pandas as pd
 from dominio.cancion import Cancion
 from pathlib import Path
 
-from src.tads import ListaEnlazada, Pila, Cola
-from src.excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError
+from tads import ListaEnlazada, Pila, Cola
+from excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError
 
 class Fonoteca:
     def __init__(self): #Funcion constructora de la Fonoteca, crea la fonoteca como una lista y el versiones.csv como un dataframe
