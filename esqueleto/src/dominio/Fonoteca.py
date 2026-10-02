@@ -1,3 +1,10 @@
+import pandas as pd
+from dominio.cancion import Cancion
+from pathlib import Path
+
+from tads import ListaEnlazada, Pila, Cola
+from excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError, ItemNoEncontradoError
+
 fonoteca = [
     {"cancion_id" : 1, "nombre" : "De musica ligera", "autor" : "Soda Stereo", "album" : "Cancion Animal", "genero" : "Rock"},
     {"cancion_id" : 2, "nombre" : "El pibe de los astilleros", "autor": "Patricio Rey y sus redonditos de ricota", "album": "La mosca y la sopa", "genero": "Rock"},
@@ -14,12 +21,6 @@ fonoteca = [
     {"cancion_id" : 62, "nombre" : "De musica ligera (Unplugged)", "autor" : "Soda Stereo", "album" : "Comfort y Musica Para Volar", "genero" : "Rock"}
 ]
 
-import pandas as pd
-from dominio.cancion import Cancion
-from pathlib import Path
-
-from tads import ListaEnlazada, Pila, Cola
-from excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError, ItemNoEncontradoError
 
 class Fonoteca:
     def __init__(self): #Funcion constructora de la Fonoteca, crea la fonoteca como una lista y el versiones.csv como un dataframe
@@ -73,7 +74,7 @@ class Reproductor:
             raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones).")
         self._playlist.insertar_al_final (id_cancion)
 
-    def encolar_tema(self, cancion) : #agrega a la cola las proximas canciones
+    def encolar_tema(self, id_cancion) : #agrega a la cola las proximas canciones
         cancion = self._fonoteca.buscar(id_cancion)
         if cancion is None:
             raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")
