@@ -64,11 +64,30 @@ def main():
         elif opcion == 5:
             operacion_recursiva ()
         elif opcion == 6:
-            pendiente ()
+        # Colección principal con tope (Playlist)
+            try:
+                mi_playlist.agregar_cancion(nueva_cancion)
+                print(f"✅ '{nueva_cancion}' agregada a tu playlist.")
+            except ColeccionLlenaError as e:
+                print(f"❌ {e}")
+
         elif opcion == 7:
-            pendiente ()
+            # Historial / Pila (Deshacer)
+            try:
+                cancion_anterior = historial.desapilar()
+                print(f"⏮️ Volviendo a escuchar: {cancion_anterior}")
+            except PilaVaciaError as e:
+                print(f"❌ {e}")
+
         elif opcion == 8:
-            pendiente ()
+            # Cola (Atender próximo turno)
+            try:
+                siguiente_cancion = cola_reproduccion.desencolar()
+                print(f"▶️ Sonando ahora: {siguiente_cancion}")
+                historial.apilar(siguiente_cancion)
+            except ColaVaciaError as e:
+                print(f"❌ {e}")
+                
         elif opcion == 9:
             pendiente ()
         else:

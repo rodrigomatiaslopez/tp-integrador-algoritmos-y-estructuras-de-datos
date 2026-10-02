@@ -21,7 +21,7 @@ from pathlib import Path
 from src.tads.lista_enlazada import ListaEnlazada
 from src.tads.pila import Pila
 from src.tads.cola import Cola
-from ColeccionLlenaError, PilaVaciaError, ColaVaciaError
+from src.excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError
 
 class Fonoteca:
     def __init__(self): #Funcion constructora de la Fonoteca, crea la fonoteca como una lista y el versiones.csv como un dataframe
