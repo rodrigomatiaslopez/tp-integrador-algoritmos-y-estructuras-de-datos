@@ -1,6 +1,9 @@
 from config import TEMA
 from dominio.Fonoteca import Fonoteca, Reproductor
+from excepciones import .
 
+fonoteca = Fonoteca()
+reproductor = Reproductor(catalogo=fonoteca, tope=50)
 TEMAS = {
     "pokedex": "Pokédex",
     "recetario": "Recetario",
@@ -8,11 +11,10 @@ TEMAS = {
 }
 
 def listar_canciones():
-    fonoteca = Fonoteca()
     fonoteca.listar()
 
+
 def operacion_recursiva (): 
-    fonoteca = Fonoteca()
     idc = None
     while idc == None: #Elegimos la cancion de la cual queremos ver las versiones existentes y se imprime el resultado
         print("Ingrese el id de la cancion de la cual desee conocer las versiones: ")
@@ -27,7 +29,6 @@ def pendiente():
 
 
 def mostrar_menu():
-    Reproductor(catalogo=fonoteca, tope=50)
     nombre = TEMAS.get(TEMA, TEMA or "(sin tema)")
     print()
     print(f"=== {nombre} — AyED C2 2026 ===")
@@ -66,10 +67,9 @@ def main():
             operacion_recursiva ()
         elif opcion == 6:
         # Colección principal con tope (Playlist)
-
             id_ingresado = int(input("Ingresá el ID de la canción para agregar: ")).strip()
             try:
-                mi_reproductor.agregar_playlist_por_id(id_ingresado)
+                reproductor.agregar_playlist_por_id(id_ingresado)
                 print("✅ Canción agregada exitosamente a tu playlist.")
             except ValueError:
                 print("❌ Por favor, ingresá un ID numérico válido.")
