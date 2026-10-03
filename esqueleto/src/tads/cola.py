@@ -8,7 +8,7 @@ class Cola:
         self._items = ListaEnlazada()
 
     def encolar(self, dato):
-        #Agrega al final de la cola
+        #Agrega un elemento al final de la cola
         self._items.insertar_al_final(dato)
 
     def desencolar(self):
@@ -16,7 +16,7 @@ class Cola:
         if self.esta_vacia():
             raise ColaVaciaError("La Cola no contiene elementos.")
         nod_sacad = self._items._head
-        self._items.eliminar(self._items._head._dato)
+        self._items.eliminar(nod_sacad._dato)
         return nod_sacad._dato
 
     def ver_frente(self):
