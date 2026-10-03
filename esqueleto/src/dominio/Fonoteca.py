@@ -3,7 +3,7 @@ from dominio.cancion import Cancion
 from pathlib import Path
 
 from tads import ListaEnlazada, Pila, Cola
-from excepciones import ColeccionLlenaError, PilaVaciaError, ColaVaciaError, ItemNoEncontradoError
+from excepciones import *
 
 fonoteca = [
     {"cancion_id" : 1, "titulo" : "De musica ligera", "autor" : "Soda Stereo", "album" : "Cancion Animal", "genero" : "Rock", "anio":1990, "duracion":213},
@@ -67,7 +67,7 @@ class Fonoteca:
     
 class Reproductor:
 
-    def __init__ (self, catalogo, tope = 50) : #constructor de reproductor para la playlist
+    def __init__ (self, catalogo, tope = 10) : #constructor de reproductor para la playlist
         self._playlist = ListaEnlazada ()
         self._historial = Pila ()
         self._proximos = Cola ()
@@ -79,21 +79,29 @@ class Reproductor:
         cancion = self._fonoteca.buscar(id_cancion)
         if cancion is None:
             raise ItemNoEncontradoError(f"No se encontró ninguna canción con el ID ({id_cancion}) en el catálogo.")    
-
-        elif cancion != None and self._playlist_tamanio <= self._tope and cancion != 0:
-
-            print (f"{cancion} | Agregada a la playlist....")
-            self._playlist.insertar_al_final (cancion)
-
         elif self._playlist_tamanio >= self._tope:
             raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones).")
-            
+        else:
+            if cancion in self._playlist :
+                print ("No se puede repetir la cancion.")
+            else:
+                print (f"{cancion} | Agregada a la playlist....")
+                self._playlist.insertar_al_final (cancion)
+                self._playlist_tamanio += 1
+
+    def cancion_actual (self) :
+
+        return self._historial.ver_tope ()
 
     def encolar_tema(self, id_cancion) : #agrega a la cola las proximas canciones
         cancion = self._fonoteca.buscar(id_cancion)
         if cancion is None:
             raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")
-        self._proximos.encolar (cancion)
+
+        else:
+            print (f"{cancion} | Agregada a la lista de reproduccion....")
+            self._proximos.encolar (cancion)
+
 
     def cancion_siguiente (self) : #saca la cancion de la cola y lo guarda en el historial
         cancion = self._proximos.desencolar ()
@@ -104,11 +112,12 @@ class Reproductor:
         return self._historial.desapilar()
 
     def eliminar(self, id_cancion) :
+
+        self.listar_playlist()
         # 1. Buscamos el objeto Cancion original en la Fonoteca
-        cancion = self._catalogo.buscar(id_cancion)
+        cancion = self._fonoteca.buscar(id_cancion)
         if cancion is None:
-            raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")
-            
+            raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")  
         # 2. Delegamos en buscar() de la ListaEnlazada para ver si está en la playlist
         if self._playlist.buscar(cancion) is None:
             raise ItemNoEncontradoError("La canción no se encuentra guardada en tu playlist.")
@@ -116,11 +125,24 @@ class Reproductor:
         # 3. Delegamos en eliminar() de la ListaEnlazada
         self._playlist.eliminar(cancion)
 
-    def listar(self) :  
+    def listar_playlist(self) : 
+        contador = 0
         if self._playlist.esta_vacia():
             print("Tu playlist está vacía.")
             return
         else:
             print("--- Mi Playlist ---")
             for p in self._playlist:
-                print (f" {p}")
+                print (f"[{contador}] {p}")
+                contador += 1
+
+    def listar_proximos(self) : 
+            contador = 0
+            if self._proximos.esta_vacia():
+                print("Tu lista de reproduccion está vacía.")
+                return
+            else:
+                print("--- Lista de reproduccion ---")
+                for p in self._proximos._items:
+                    print (f"[{contador}] {p}")
+                    contador += 1
