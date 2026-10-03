@@ -47,17 +47,21 @@ Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacio
 
 ---
 
-¡Copia este texto directamente en tu informe y ya lo vas a tener recuperado y prolijo para volver a hacer el commit y el `push` sin renegar!
-
 ## 4. TADs (E3)
 
-| TAD | Operaciones | Invariante |
-| --- | --- | --- |
-| ListaEnlazada |  |  |
-| Pila |  |  |
-| Cola |  |  |
+### 4. TADs (E3)
 
-Dónde se usa cada uno en el dominio.
+| TAD | Operaciones | Invariante |
+| :--- | :--- | :--- |
+| **ListaEnlazada** | `insertar_al_inicio(elem)`<br>`insertar_al_final(elem)`<br>`eliminar(elem)`<br>`tamanio()`<br>`esta_vacia()`<br>`__iter__()` | Secuencia lineal encadenada de nodos. Si `tamanio == 0`, `cabeza` es `None`; en caso contrario, `cabeza` referencia al primer nodo y el puntero siguiente del último nodo referencia a `None`. |
+| **Pila** | `apilar(elem)`<br>`desapilar()`<br>`ver_tope()`<br>`esta_vacia()`<br>`tamanio()` | **LIFO (Last In, First Out):** El último elemento en ingresar es estrictamente el primero en salir. El acceso, inserción y remoción se realizan exclusivamente por el tope. |
+| **Cola** | `encolar(elem)`<br>`desencolar()`<br>`frente()`<br>`esta_vacia()`<br>`tamanio()` | **FIFO (First In, First Out):** El primer elemento en ingresar es estrictamente el primero en salir. Las inserciones se realizan por el extremo final y las remociones por el frente. |
+
+**Dónde se usa cada uno en el dominio:**
+
+* **ListaEnlazada → Playlist (Colección Principal con Tope):** Se utiliza para almacenar y persistir la colección de canciones del usuario, permitiendo listar el contenido y controlar que no se sobrepase el límite máximo de capacidad (`ColeccionLlenaError`).
+* **Pila → Historial de Reproducción:** Almacena de forma cronológica inversa las canciones ya reproducidas. Al ser LIFO, permite la funcionalidad de "retroceder" o volver a escuchar la pista inmediatamente anterior.
+* **Cola → Fila de Reproducción ("A continuación"):** Gestiona los temas en espera de sonar. Al regirse por FIFO, asegura que las canciones se reproduzcan en el orden de llegada en que fueron agregadas.
 
 ## 5. Complejidad (E4)
 
