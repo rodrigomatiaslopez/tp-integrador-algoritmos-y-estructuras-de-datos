@@ -73,13 +73,12 @@ class Reproductor:
         self._proximos = Cola ()
         self._tope = tope
         self._fonoteca = catalogo
-        self._playlist_tamanio = 0
 
     def agregar_playlist(self, id_cancion) : #se agregan canciones a la playlist con tope maximo de 50
         cancion = self._fonoteca.buscar(id_cancion)
         if cancion is None:
             raise ItemNoEncontradoError(f"No se encontró ninguna canción con el ID ({id_cancion}) en el catálogo.")    
-        elif self._playlist_tamanio >= self._tope:
+        elif self._playlist.tamanio () >= self._tope:
             raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones).")
         else:
             if cancion in self._playlist :
@@ -87,7 +86,7 @@ class Reproductor:
             else:
                 print (f"{cancion} | Agregada a la playlist....")
                 self._playlist.insertar_al_final (cancion)
-                self._playlist_tamanio += 1
+                print (self._playlist.tamanio())
 
     def cancion_actual (self) :
 
@@ -146,3 +145,4 @@ class Reproductor:
                 for p in self._proximos._items:
                     print (f"[{contador}] {p}")
                     contador += 1
+                    
