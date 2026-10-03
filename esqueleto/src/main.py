@@ -3,7 +3,7 @@ from dominio.Fonoteca import Fonoteca, Reproductor
 from excepciones import *
 
 fonoteca = Fonoteca()
-reproductor = Reproductor(catalogo=fonoteca, tope=50)
+reproductor = Reproductor(catalogo=fonoteca, tope = 10)
 TEMAS = {
     "pokedex": "Pokédex",
     "recetario": "Recetario",
@@ -81,18 +81,22 @@ def main():
             while opcion_2 != 0:
                 print ("\n=== Menu: [1] Agregar cancion a la playlist [2] Eliminar cancion de la playlist  [0] Salir ===")
                 opcion_2 = int (input ("Ingrese opcion: "))
+
                 if opcion_2 == 1 :
                     while id_ingresado != 0 : 
                         id_ingresado = int(input("Ingresá el ID de la canción para agregar [0 para finalizar]: "))
                         try:
                             reproductor.agregar_playlist(id_ingresado)
-                            print("✅ Canción agregada exitosamente a tu playlist.")
+                            print("+ Canción agregada exitosamente a tu playlist.")
                         except ValueError:
-                            print("❌ Por favor, ingresá un ID numérico válido.")
+                            print("- Por favor, ingresá un ID numérico válido.")
                         except ItemNoEncontradoError as e:
-                            print(f"❌ {e}")
+                            print(f"- {e}")
+                            break
                         except ColeccionLlenaError as e:
-                            print(f"❌ {e}")
+                            print(f"- {e}")
+                            break
+
                         if id_ingresado == 0 :
                             break
 
@@ -101,38 +105,46 @@ def main():
                         id_ingresado_2 = int(input("Ingresá el ID de la canción para eliminar [0 para finalizar]: "))
                         try:
                             reproductor.eliminar(id_ingresado_2)
-                            print("✅ Canción eliminada exitosamente a tu playlist.")
+                            print("+ Canción eliminada exitosamente a tu playlist.")
                         except ValueError:
-                            print("❌ Por favor, ingresá un ID numérico válido.")
+                            print("- Por favor, ingresá un ID numérico válido.")
+                            break
                         except ItemNoEncontradoError as e:
-                            print(f"❌ {e}")
+                            print(f"- {e}")
+                            break
+
                         if id_ingresado_2 == 0 :
                             break
+
                 elif opcion_2 == 0 :
                     break
                 else:
                     print ("Opcion incorrecta.\n")
 
         elif opcion == 7:
-
             while opcion_3 != 0:
                 print ("\n=== Menu: [1] Ver playlist [2] Cancion actual [3] Cancion anterior [0] Salir ===")
                 opcion_3 = int (input ("Ingrese opcion: "))
+
                 if opcion_3 == 1 :
                     reproductor.listar_playlist ()
                 elif opcion_3 == 2 :
                     reproductor.cancion_actual ()
                     try:
                         cancion_actual = reproductor.cancion_actual()
-                        print(f"⏮️ Estas escuchando: {cancion_actual.nombre} - {cancion_actual.autor}")
+                        print(f"⏮ Estas escuchando: {cancion_actual.nombre} - {cancion_actual.autor}")
                     except PilaVaciaError as e:
-                        print(f"❌ {e}")
+                        print(f"- {e}")
+                        break
+
                 elif opcion_3 == 3 :
                     try:
                         cancion_anterior = reproductor.cancion_anterior()
-                        print(f"⏮️ Volviendo a escuchar: {cancion_anterior.nombre} - {cancion_anterior.autor}")
+                        print(f"⏮ Volviendo a escuchar: {cancion_anterior.nombre} - {cancion_anterior.autor}")
                     except PilaVaciaError as e:
-                        print(f"❌ {e}")
+                        print(f"- {e}")
+                        break
+
                 elif opcion_2 == 0 :
                     break
                 else :
@@ -141,9 +153,9 @@ def main():
         elif opcion == 8:
 
             print ("\n=== [1] Encolar tema [2] Mostrar lista completa [3] Reproducir | Cancion siguiente [0] Salir ===")
-           
+            opcion_4 = int (input ("Ingrese la opcion: "))
             while opcion_4 != 0 : 
-                opcion_4 = int (input ("Ingrese la opcion: "))
+                
                 if opcion_4 == 1 :     
                     while id_ingresado_2 != 0 :
                         id_ingresado_2 = int(input ("Ingrese la ID de la cancion para agregar a la cola [0 para finalizar]: "))        
@@ -151,20 +163,22 @@ def main():
                             break
                         else:
                             reproductor.encolar_tema (id_ingresado_2)
+
                 elif opcion_4 == 2:
                     reproductor.listar_proximos ()
+
                 elif opcion_4 == 3 :
                     try:
                         siguiente_cancion = reproductor.cancion_siguiente()
-                        print(f"▶️ Sonando ahora: {siguiente_cancion.nombre} - {siguiente_cancion.autor}")
+                        print(f"▶ Sonando ahora: {siguiente_cancion.nombre} - {siguiente_cancion.autor}")
                     except ColaVaciaError as e:
-                        print(f"❌ {e}")
+                        print(f"- {e}")
+                        break
                 
         elif opcion == 9:
             pendiente ()
         else:
             print("Opción inválida.")
-
 
 if __name__ == "__main__":
     main()
