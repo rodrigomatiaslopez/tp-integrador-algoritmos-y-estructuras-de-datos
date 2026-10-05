@@ -177,7 +177,7 @@ Al seleccionar la opcion `6. Coleccion principal (playlist)` se desplega el menu
   ```
 
 * **Caso 2: Desapilar historial vacío (Pila)**
-* 
+
 Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
 
 `1` para ver la playlist (agregada en opcion 6 (ref: caso 3.1) ), `2` para ver la cancion actual de la lista de reproduccion (cola), `3` para ver cancion anterior (pila) `0`.
@@ -188,11 +188,12 @@ Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
   ```
   
 * **Caso 3: Desencolar cola vacía**
-  Al seleccionar la opcion `8. Cola` se desplega el menu interactivo.
   
-  `1` para encolar un tema, `2` para mostrar la lista (cola) completa y `3` para reproducir y poner la siguiente cancion.
+Al seleccionar la opcion `8. Cola` se desplega el menu interactivo.
+  
+`1` para encolar un tema, `2` para mostrar la lista (cola) completa y `3` para reproducir y poner la siguiente cancion.
 
-  Usamos la opcion `8` para desencolar la cola vacia.
+Usamos la opcion `8` para desencolar la cola vacia.
   ```text
   === [1] Encolar tema [2] Mostrar lista completa [3] Reproducir | Cancion siguiente [0] Salir ===
     Ingrese la opcion: 3
@@ -200,11 +201,12 @@ Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
   ```
 
 * **Caso 4: Listar colección con el iterador**
-  Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
-  
-  `1` para ver la playlist, `2`, para ver la cancion actual  y `3` para la cancion anterior.
 
-  Usamos `1` para ver la playlist coleccion con el iterador.
+Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
+  
+`1` para ver la playlist, `2`, para ver la cancion actual  y `3` para la cancion anterior.
+
+Usamos `1` para ver la playlist (ref: del caso 3.1) coleccion con el iterador.
   ```text
   === Menu: [1] Ver playlist [2] Cancion actual [3] Cancion anterior [0] Salir ===
   Ingrese opcion: 1
