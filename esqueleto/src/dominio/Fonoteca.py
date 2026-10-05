@@ -79,14 +79,13 @@ class Reproductor:
         if cancion is None:
             raise ItemNoEncontradoError(f"No se encontró ninguna canción con el ID ({id_cancion}) en el catálogo.")    
         elif self._playlist.tamanio () >= self._tope:
-            raise ColeccionLlenaError (f"La playlist esta llena (maximo {self._tope} canciones).")
+            raise ColeccionLlenaError (f"\nLa playlist esta llena (maximo {self._tope} canciones).")
         else:
             if cancion in self._playlist :
                 print ("No se puede repetir la cancion.")
             else:
-                print (f"{cancion} | Agregada a la playlist....")
+                print (f"{cancion} || Agregada a la playlist....")
                 self._playlist.insertar_al_final (cancion)
-                print (self._playlist.tamanio())
 
     def cancion_actual (self) :
 
@@ -98,7 +97,7 @@ class Reproductor:
             raise ItemNoEncontradoError(f"El ID '{id_cancion}' no existe en el catálogo.")
 
         else:
-            print (f"{cancion} | Agregada a la lista de reproduccion....")
+            print (f"{cancion} || Agregada a la lista de reproduccion....")
             self._proximos.encolar (cancion)
 
 
@@ -145,4 +144,3 @@ class Reproductor:
                 for p in self._proximos._items:
                     print (f"[{contador}] {p}")
                     contador += 1
-                    
