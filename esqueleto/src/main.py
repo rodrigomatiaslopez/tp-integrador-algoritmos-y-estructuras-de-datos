@@ -54,12 +54,11 @@ def main():
         return
 
     opcion = None
-    opcion_2 = None
-    opcion_3 = None
-    opcion_4 = None
-    id_ingresado = None
-    id_ingresado_2 = None
-
+    
+    
+    
+    
+    
     while opcion != 0:
         mostrar_menu()
         opcion = int (input("> ").strip())
@@ -78,11 +77,13 @@ def main():
             operacion_recursiva ()
         elif opcion == 6:
         # Colección principal con tope (Playlist)
+            opcion_2 = None
             while opcion_2 != 0:
                 print ("\n=== Menu: [1] Agregar cancion a la playlist [2] Eliminar cancion de la playlist  [0] Salir ===")
                 opcion_2 = int (input ("Ingrese opcion: "))
 
                 if opcion_2 == 1 :
+                    id_ingresado = None
                     while id_ingresado != 0 : 
                         id_ingresado = int(input("Ingresá el ID de la canción para agregar [0 para finalizar]: "))
                         try:
@@ -101,6 +102,7 @@ def main():
                             break
 
                 elif opcion_2 == 2 :
+                    id_ingresado_2 = None
                     while id_ingresado_2 != 0 : 
                         id_ingresado_2 = int(input("Ingresá el ID de la canción para eliminar [0 para finalizar]: "))
                         try:
@@ -122,6 +124,7 @@ def main():
                     print ("Opcion incorrecta.\n")
 
         elif opcion == 7:
+            opcion_3 = None
             while opcion_3 != 0:
                 print ("\n=== Menu: [1] Ver playlist [2] Cancion actual [3] Cancion anterior [0] Salir ===")
                 opcion_3 = int (input ("Ingrese opcion: "))
@@ -151,21 +154,25 @@ def main():
                     print ("Opcion incorrecta.\n")
 
         elif opcion == 8:
-
-            print ("\n=== [1] Encolar tema [2] Mostrar lista completa [3] Reproducir | Cancion siguiente [0] Salir ===")
-            opcion_4 = int (input ("Ingrese la opcion: "))
+            opcion_4 = None
             while opcion_4 != 0 : 
-                
-                if opcion_4 == 1 :     
-                    while id_ingresado_2 != 0 :
-                        id_ingresado_2 = int(input ("Ingrese la ID de la cancion para agregar a la cola [0 para finalizar]: "))        
-                        if id_ingresado_2 == 0:
+                print ("\n=== [1] Encolar tema [2] Mostrar lista completa [3] Reproducir | Cancion siguiente [0] Salir ===")
+                opcion_4 = int (input ("Ingrese la opcion: "))
+                if opcion_4 == 1 :
+                    id_ingresado_3 = None     
+                    while id_ingresado_3 != 0 :
+                        id_ingresado_3 = int(input ("Ingrese la ID de la cancion para agregar a la cola [0 para finalizar]: "))        
+                        if id_ingresado_3 == 0:
                             break
                         else:
-                            reproductor.encolar_tema (id_ingresado_2)
+                            reproductor.encolar_tema (id_ingresado_3)
 
                 elif opcion_4 == 2:
-                    reproductor.listar_proximos ()
+                    try:
+                        reproductor.listar_proximos ()
+                    except ColaVaciaError as e:
+                        print(f"- {e}")
+                        break
 
                 elif opcion_4 == 3 :
                     try:
@@ -179,6 +186,7 @@ def main():
             pendiente ()
         else:
             print("Opción inválida.")
+
 
 if __name__ == "__main__":
     main()
