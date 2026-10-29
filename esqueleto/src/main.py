@@ -3,6 +3,7 @@ from dominio.Fonoteca import Fonoteca, Reproductor
 from excepciones import *
 from algoritmos.busqueda import busqueda_lineal, busqueda_binaria
 from algoritmos.ordenamiento import ordenar_seleccion, ordenar_insercion
+import time
 
 fonoteca = Fonoteca()
 reproductor = Reproductor(catalogo=fonoteca, tope = 10)
@@ -28,6 +29,19 @@ def operacion_recursiva ():
         for can_ver in resultado_recursivo:
             print(can_ver)
 
+def medir_tiempo (funcion, datos, *args, **kwargs) :
+    inicio = time.perf_counter ()
+    resultado_original = funcion (datos, *args, **kwargs)
+    fin = time.perf_counter ()
+    print (f"Tiempo de ejecucion Original: {fin - inicio:.6f} s")
+
+    datos_grandes = datos * 10
+    inicio_grande = time.perf_counter ()
+    resultado_grande = funcion (datos_grandes, *args, **kwargs)
+    fin_grande = time.perf_counter ()
+    print (f"Tiempo de ejecucion Grande: {fin_grande - inicio_grande:.6f} s")
+
+    return resultado_original
 
 def pendiente():
     print("Todavía no está implementado. Completar en la entrega que corresponde.")
@@ -72,16 +86,17 @@ def main():
             opcion_5 = None
             while opcion_5 != 0:
 
-                print ("Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir")
+                print ("\nBuscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir")
                 id_ingresado_4 = int (input ("Ingrese opcion: "))
 
                 if id_ingresado_4 == 1:
                     nombre = str (input ("Ingresa el nombre: "))
                     resultado_lineal = busqueda_lineal (fonoteca.fonoteca, nombre, lambda x: x.nombre)
                     if resultado_lineal :
-                        print (f"Encontrado: {resultado_lineal}\n")
+                        print (f"\nEncontrado: {resultado_lineal}")
                     else:
                         print ("No se encontro el elemento.\n")
+                    medir_tiempo (busqueda_lineal, fonoteca.fonoteca, nombre, obtener_clave = lambda p: p.nombre)
 
                 elif id_ingresado_4 == 2:
                     nombre = str (input ("Ingresa el nombre: "))
@@ -90,17 +105,18 @@ def main():
                         print (f"Encontrado: {resultado_binaria}\n")
                     else:
                         print ("No se encontro el elemento.\n")
+                    medir_tiempo (busqueda_binaria, fonoteca.fonoteca, nombre, obtener_clave = lambda p: p.nombre)
                     
                 elif id_ingresado_4 == 0:
                     break
 
                 else:
-                    pass
+                    print ("Ingrese una opcion correcta.")
 
         elif opcion == 4:
             opcion_6 = None
             while opcion_6 != 0 :
-                print ("Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion")
+                print ("\nOrdenar por: [1] Nombre | [2] Tiempo / hp / duracion")
                 id_ingresado_5 = int (input ("Ingresa la opcion: "))
 
                 if id_ingresado_5 == 1 :
@@ -110,26 +126,29 @@ def main():
                         print ("---- Catalogo ordenado por Seleccion ----")
                         for cancion in resultado_seleccion: 
                             print (cancion)
-  
+                        medir_tiempo (ordenar_seleccion, fonoteca.fonoteca, obtener_clave = lambda p: p.nombre)
+
                     elif coleccion == 2:
                         resultado_insercion = ordenar_insercion (fonoteca.fonoteca, lambda k: k.nombre)
                         print ("---- Catalogo ordenado por Insercion ----")
                         for cancion in resultado_insercion :
                             print (cancion)
+                        medir_tiempo (ordenar_insercion, fonoteca.fonoteca, obtener_clave = lambda p: p.nombre)
                     
                     else: 
                         pass
                     
                 elif id_ingresado_5 == 2:
 
-                    pass
+                    pendiente ()
 
                 elif id_ingresado_5 == 0:
 
                     break
 
                 else: 
-                    pass
+                    print ("Ingrese una opcion correcta.")
+
 
         elif opcion == 5:
             operacion_recursiva ()
@@ -242,6 +261,7 @@ def main():
                 
         elif opcion == 9:
             pendiente ()
+            
         else:
             print("Opción inválida.")
 
