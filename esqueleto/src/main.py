@@ -1,6 +1,8 @@
 from config import TEMA
 from dominio.Fonoteca import Fonoteca, Reproductor
 from excepciones import *
+from algoritmos.busqueda import busqueda_lineal, busqueda_binaria
+from algoritmos.ordenamiento import ordenar_seleccion, ordenar_insercion
 
 fonoteca = Fonoteca()
 reproductor = Reproductor(catalogo=fonoteca, tope = 10)
@@ -54,11 +56,7 @@ def main():
         return
 
     opcion = None
-    
-    
-    
-    
-    
+ 
     while opcion != 0:
         mostrar_menu()
         opcion = int (input("> ").strip())
@@ -70,9 +68,69 @@ def main():
             id_cancion = int (input("Ingrese el ID de la cancion: "))
             mostrar_detalle (id_cancion)
         elif opcion == 3:
-            pendiente ()
+
+            opcion_5 = None
+            while opcion_5 != 0:
+
+                print ("Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir")
+                id_ingresado_4 = int (input ("Ingrese opcion: "))
+
+                if id_ingresado_4 == 1:
+                    nombre = str (input ("Ingresa el nombre: "))
+                    resultado_lineal = busqueda_lineal (fonoteca.fonoteca, nombre, lambda x: x.nombre)
+                    if resultado_lineal :
+                        print (f"Encontrado: {resultado_lineal}\n")
+                    else:
+                        print ("No se encontro el elemento.\n")
+
+                elif id_ingresado_4 == 2:
+                    nombre = str (input ("Ingresa el nombre: "))
+                    resultado_binaria = busqueda_binaria (fonoteca.fonoteca, nombre, lambda i: i.nombre)
+                    if resultado_binaria :
+                        print (f"Encontrado: {resultado_binaria}\n")
+                    else:
+                        print ("No se encontro el elemento.\n")
+                    
+                elif id_ingresado_4 == 0:
+                    break
+
+                else:
+                    pass
+
         elif opcion == 4:
-            pendiente ()
+            opcion_6 = None
+            while opcion_6 != 0 :
+                print ("Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion")
+                id_ingresado_5 = int (input ("Ingresa la opcion: "))
+
+                if id_ingresado_5 == 1 :
+                    coleccion = int (input ("[1] Seleccion.... | [2] Insercion : "))
+                    if coleccion == 1:
+                        resultado_seleccion = ordenar_seleccion (fonoteca.fonoteca, lambda j: j.nombre)
+                        print ("---- Catalogo ordenado por Seleccion ----")
+                        for cancion in resultado_seleccion: 
+                            print (cancion)
+  
+                    elif coleccion == 2:
+                        resultado_insercion = ordenar_insercion (fonoteca.fonoteca, lambda k: k.nombre)
+                        print ("---- Catalogo ordenado por Insercion ----")
+                        for cancion in resultado_insercion :
+                            print (cancion)
+                    
+                    else: 
+                        pass
+                    
+                elif id_ingresado_5 == 2:
+
+                    pass
+
+                elif id_ingresado_5 == 0:
+
+                    break
+
+                else: 
+                    pass
+
         elif opcion == 5:
             operacion_recursiva ()
         elif opcion == 6:
