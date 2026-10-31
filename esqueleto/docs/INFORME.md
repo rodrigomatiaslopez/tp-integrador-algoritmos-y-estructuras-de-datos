@@ -63,17 +63,29 @@ Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacio
 * **Pila → Historial de Reproducción:** Almacena de forma cronológica inversa las canciones ya reproducidas. Al ser LIFO, permite la funcionalidad de "retroceder" o volver a escuchar la pista inmediatamente anterior.
 * **Cola → Fila de Reproducción ("A continuación"):** Gestiona los temas en espera de sonar. Al regirse por FIFO, asegura que las canciones se reproduzcan en el orden de llegada en que fueron agregadas.
 
-## 5. Complejidad (E4)
+### 5. Complejidad (E4)
 
 | Operación | Tiempo | Espacio | Por qué |
-| --- | --- | --- | --- |
-|  |  |  |  |
+| :--- | :--- | :--- | :--- |
+| **Listar catálogo** | O(n) | O(1) | Recorre los n elementos una vez (iterador). |
+| **Búsqueda lineal** | O(n) en el peor / O(1) en el mejor | O(1) | Toca cada elemento hasta encontrarlo o llegar al final. |
+| **Búsqueda binaria** | O(log n) | O(1) | Cada comparación descarta la mitad del rango. |
+| **Ordenar por selección** | O(n²) siempre | O(1) | Dos bucles anidados: n + (n-1) + ... + 1 ≈ n²/2 comparaciones. |
+| **Ordenar por inserción** | O(n) mejor / O(n²) peor y promedio | O(1) | Si ya está ordenado, hace 1 comparación por elemento; si está al revés, desplaza todo. |
+| **Ver detalle de un ítem** | O(n) o O(1) | O(1) | Según cómo accedan (recorrido vs. índice). |
 
-Mediciones (`time.perf_counter`):
+#### Mediciones (`time.perf_counter`):
 
 | Operación | n | segundos |
-| --- | --- | --- |
-|  |  |  |
+| :--- | :--- | :--- |
+| búsqueda lineal (nombre) | 13 | 0.000016 |
+| búsqueda lineal (n × 10) | 130 | 0.000002 |
+| búsqueda binaria (nombre) | 13 | 0.000018 |
+| búsqueda binaria (n × 10) | 130 | 0.000005 |
+| ordenar por selección | 13 | 0.000019 |
+| ordenar por selección (n × 10) | 130 | 0.000577 |
+| ordenar por inserción | 13 | 0.000019 |
+| ordenar por inserción (n × 10) | 130 | 0.000379 |
 
 ## 6. Persistencia (E5)
 
