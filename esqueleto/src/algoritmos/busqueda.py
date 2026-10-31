@@ -3,7 +3,8 @@ def busqueda_lineal(coleccion, clave, obtener_clave = None):
 
     for elemento in coleccion:
         if obtener_clave is None:
-            return elemento
+            if elemento == clave:
+                return elemento
         elif obtener_clave (elemento) == clave:
             return elemento
     return None #no encontrado: el CLI avisa, no explota
