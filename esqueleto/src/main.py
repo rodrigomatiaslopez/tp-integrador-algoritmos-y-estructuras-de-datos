@@ -29,17 +29,23 @@ def operacion_recursiva ():
         for can_ver in resultado_recursivo:
             print(can_ver)
 
-def medir_tiempo (funcion, datos, *args, **kwargs) :
-    inicio = time.perf_counter ()
-    resultado_original = funcion (datos, *args, **kwargs)
-    fin = time.perf_counter ()
-    print (f"Tiempo de ejecucion Original: {fin - inicio:.6f} s")
+def medir_tiempo(funcion, datos, *args, **kwargs):
+    # Medición con dataset original (n)
+    inicio = time.perf_counter()
+    resultado_original = funcion(datos, *args, **kwargs)
+    fin = time.perf_counter()
+    t_original = fin - inicio
 
+    # Medición con dataset 10 veces más grande (10n)
     datos_grandes = datos * 10
-    inicio_grande = time.perf_counter ()
-    resultado_grande = funcion (datos_grandes, *args, **kwargs)
-    fin_grande = time.perf_counter ()
-    print (f"Tiempo de ejecucion Grande: {fin_grande - inicio_grande:.6f} s")
+    inicio_grande = time.perf_counter()
+    funcion(datos_grandes, *args, **kwargs)
+    fin_grande = time.perf_counter()
+    t_grande = fin_grande - inicio_grande
+
+    # Imprimimos los tiempos en consola
+    print(f"⏱ Tiempo (n={len(datos)}): {t_original:.6f} s")
+    print(f"⏱ Tiempo (n={len(datos_grandes)}): {t_grande:.6f} s\n")
 
     return resultado_original
 
@@ -70,6 +76,7 @@ def main():
         return
 
     opcion = None
+    catalogo_ordenado_por = None
  
     while opcion != 0:
         mostrar_menu()
@@ -91,21 +98,37 @@ def main():
 
                 if id_ingresado_4 == 1:
                     nombre = str (input ("Ingresa el nombre: "))
-                    resultado_lineal = busqueda_lineal (fonoteca.fonoteca, nombre, lambda x: x.nombre)
+                    resultado_lineal = medir_tiempo(
+                        busqueda_lineal, 
+                        fonoteca.fonoteca, 
+                        nombre, 
+                        obtener_clave=lambda x: x.nombre
+                    )
                     if resultado_lineal :
                         print (f"\nEncontrado: {resultado_lineal}")
                     else:
                         print ("No se encontro el elemento.\n")
-                    medir_tiempo (busqueda_lineal, fonoteca.fonoteca, nombre, obtener_clave = lambda p: p.nombre)
+                    
+                    
 
                 elif id_ingresado_4 == 2:
-                    nombre = str (input ("Ingresa el nombre: "))
-                    resultado_binaria = busqueda_binaria (fonoteca.fonoteca, nombre, lambda i: i.nombre)
-                    if resultado_binaria :
-                        print (f"Encontrado: {resultado_binaria}\n")
+                # Validar que el catálogo esté ordenado previamente
+                    if catalogo_ordenado_por != "nombre":
+                        print("\n[ALERTA] No se puede ejecutar Búsqueda Binaria.")
+                        print("El catálogo no está ordenado por nombre. Por favor, ordénelo primero desde la opción 4.\n")
                     else:
-                        print ("No se encontro el elemento.\n")
-                    medir_tiempo (busqueda_binaria, fonoteca.fonoteca, nombre, obtener_clave = lambda p: p.nombre)
+                        nombre = str (input ("Ingresa el nombre: "))
+                        resultado_binaria = medir_tiempo(
+                            busqueda_binaria, 
+                            fonoteca.fonoteca, 
+                            nombre, 
+                            obtener_clave=lambda i: i.nombre
+                        )
+                        if resultado_binaria :
+                            print (f"Encontrado: {resultado_binaria}\n")
+                        else:
+                            print ("No se encontro el elemento.\n")
+                    
                     
                 elif id_ingresado_4 == 0:
                     break
@@ -115,6 +138,7 @@ def main():
 
         elif opcion == 4:
             opcion_6 = None
+
             while opcion_6 != 0 :
                 print ("\nOrdenar por: [1] Nombre | [2] Tiempo / hp / duracion")
                 id_ingresado_5 = int (input ("Ingresa la opcion: "))
@@ -122,21 +146,37 @@ def main():
                 if id_ingresado_5 == 1 :
                     coleccion = int (input ("[1] Seleccion.... | [2] Insercion : "))
                     if coleccion == 1:
-                        resultado_seleccion = ordenar_seleccion (fonoteca.fonoteca, lambda j: j.nombre)
-                        print ("---- Catalogo ordenado por Seleccion ----")
-                        for cancion in resultado_seleccion: 
-                            print (cancion)
-                        medir_tiempo (ordenar_seleccion, fonoteca.fonoteca, obtener_clave = lambda p: p.nombre)
+                        resultado_seleccion = medir_tiempo(
+                            ordenar_seleccion, 
+                            fonoteca.fonoteca, 
+                            obtener_clave=lambda j: j.nombre
+                        )
+                                                
+                        # Guardamos el resultado ordenado en el catálogo para que persista
+                        fonoteca.fonoteca = resultado_seleccion
+                        catalogo_ordenado_por = "nombre"
+                                                
+                        print("---- Catálogo ordenado por Selección ----")
+                        fonoteca.listar()
 
+                        
                     elif coleccion == 2:
-                        resultado_insercion = ordenar_insercion (fonoteca.fonoteca, lambda k: k.nombre)
-                        print ("---- Catalogo ordenado por Insercion ----")
-                        for cancion in resultado_insercion :
-                            print (cancion)
-                        medir_tiempo (ordenar_insercion, fonoteca.fonoteca, obtener_clave = lambda p: p.nombre)
-                    
-                    else: 
+                        resultado_insercion = medir_tiempo(
+                            ordenar_insercion, 
+                            fonoteca.fonoteca, 
+                            obtener_clave=lambda p: p.nombre
+                        )
+                        
+                        fonoteca.fonoteca = resultado_insercion
+                        catalogo_ordenado_por = "nombre"
+                        
+                        print("---- Catálogo ordenado por Inserción ----")
+                        fonoteca.listar()
+
+                    elif opcion_6 == 0:
                         pass
+                    else: 
+                        print("Opción incorrecta.")
                     
                 elif id_ingresado_5 == 2:
 
@@ -225,7 +265,7 @@ def main():
                         print(f"- {e}")
                         break
 
-                elif opcion_2 == 0 :
+                elif opcion_3 == 0 :
                     break
                 else :
                     print ("Opcion incorrecta.\n")
@@ -264,7 +304,6 @@ def main():
             
         else:
             print("Opción inválida.")
-
 
 if __name__ == "__main__":
     main()
