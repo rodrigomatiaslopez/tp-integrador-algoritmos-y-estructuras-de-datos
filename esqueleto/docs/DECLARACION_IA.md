@@ -9,7 +9,7 @@ Fecha de esta versión del archivo:
 | E1 | 11/09/26 | No se usó IA |  |  |  |  |
 | E2 | 20/09/26 | No se usó IA |  |  |  |  |
 | E3 | 3/10/2026 | No se usó IA |  |  |  |  |
-| E4 |  |  |  |  |  |  |
+| E4 | 31/10/2026 | No se usó IA |  |  |  |  |
 | E5 |  |  |  |  |  |  |
 | E6 |  |  |  |  |  |  |
 
