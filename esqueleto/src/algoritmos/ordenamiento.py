@@ -6,8 +6,8 @@ def ordenar_seleccion(coleccion, obtener_clave):
         for j in range (i + 1, n) :
             if obtener_clave (coleccion [j]) < obtener_clave (coleccion [pos_min]) :
                 pos_min = j
-            coleccion [i], coleccion [pos_min] = coleccion [pos_min], coleccion [i]
-        return coleccion
+        coleccion [i], coleccion [pos_min] = coleccion [pos_min], coleccion [i]
+    return coleccion
 
      
     # raise NotImplementedError
