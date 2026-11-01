@@ -5,7 +5,7 @@ def busqueda_lineal(coleccion, clave, obtener_clave = None):
         if obtener_clave is None:
             if elemento == clave:
                 return elemento
-        elif obtener_clave (elemento) == clave:
+        elif obtener_clave(elemento) == clave:
             return elemento
     return None #no encontrado: el CLI avisa, no explota
     
@@ -15,12 +15,12 @@ def busqueda_lineal(coleccion, clave, obtener_clave = None):
 def busqueda_binaria(coleccion, clave, obtener_clave):
     """La colección tiene que estar ordenada por obtener_clave."""
     izq = 0
-    der = len (coleccion) - 1
+    der = len(coleccion) - 1
     while izq <= der:
         medio = (izq + der) // 2
-        valor = obtener_clave (coleccion[medio])
+        valor = obtener_clave(coleccion[medio])
         if valor == clave:
-            return coleccion [medio]
+            return coleccion[medio]
         elif valor < clave:
             izq = medio + 1 #la clave esta en la mitad derecha
         else:

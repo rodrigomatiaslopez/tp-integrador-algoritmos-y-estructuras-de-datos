@@ -140,7 +140,7 @@ def main():
             opcion_6 = None
 
             while opcion_6 != 0 :
-                print ("\nOrdenar por: [1] Nombre | [2] Tiempo / hp / duracion")
+                print ("\nOrdenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir")
                 id_ingresado_5 = int (input ("Ingresa la opcion: "))
 
                 if id_ingresado_5 == 1 :

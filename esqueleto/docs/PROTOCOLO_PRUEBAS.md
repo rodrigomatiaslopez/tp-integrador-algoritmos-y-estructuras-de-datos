@@ -16,10 +16,10 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 | P06 | E3 | Desapilar historial vacío | pila vacía | excepción propia, menú sigue | pasa |  |
 | P07 | E3 | Desencolar cola vacía | cola vacía | excepción propia, menú sigue | pasa |  |
 | P08 | E3 | Listar colección con el iterador | 2+ ítems | el orden coincide con las inserciones | pasa |  |
-| P09 | E4 | Búsqueda lineal de un nombre que existe |  | lo encuentra |  |  |
-| P10 | E4 | Búsqueda lineal de un nombre que no existe |  | no encontrado, sin traceback |  |  |
-| P11 | E4 | Búsqueda binaria con catálogo desordenado |  | avisa o reordena; no da un falso hit |  |  |
-| P12 | E4 | Ordenar por un criterio y después por otro |  | el orden cambia |  |  |
+| P09 | E4 | Búsqueda lineal de un nombre que existe |  | lo encuentra | lo encuentra |  |
+| P10 | E4 | Búsqueda lineal de un nombre que no existe |  | no encontrado, sin traceback | no encontro el elemento, no emitio traceback |  |
+| P11 | E4 | Búsqueda binaria con catálogo desordenado |  | avisa o reordena; no da un falso hit | aviso que el catalogo esta desornedado y cancelo la busqueda  |  |
+| P12 | E4 | Ordenar por un criterio y después por otro |  | el orden cambia | no hay cambios en el orden, pero sí en el tiempo de ejecucion |  |
 | P13 | E5 | Guardar CSV, salir, volver a entrar |  | los datos siguen |  |  |
 | P14 | E5 | Guardar binario y modificar un registro por id |  | al recargar, ese campo cambió |  |  |
 | P15 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido |  |  |
@@ -133,7 +133,7 @@ Modificar temporalmente el archivo `src/config.py` cambiando el valor de `TEMA` 
 # E3
 * **Caso de prueba 1: Agregar a la colección principal hasta el tope (Lista enlazada)**
   
-Al seleccionar la opcion `6. Coleccion principal (playlist)` se desplega el menu interactivo para agregar una cancion, 
+Al seleccionar la opcion `6. Coleccion principal (playlist)` se despliega el menu interactivo para agregar una cancion, 
 
 `1` cuando se agrega una cancion a la playlist el programa directamente no te deja agregar mas canciones.
 
@@ -178,7 +178,7 @@ Al seleccionar la opcion `6. Coleccion principal (playlist)` se desplega el menu
 
 * **Caso 2: Desapilar historial vacío (Pila)**
 
-Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
+Al seleccionar la opcion `7. Historial (pila)` se despliega el menu interactivo.
 
 `1` para ver la playlist (agregada en opcion 6 (ref: caso 3.1) ), `2` para ver la cancion actual de la lista de reproduccion (cola), `3` para ver cancion anterior (pila) `0`.
   ```text
@@ -202,7 +202,7 @@ Usamos la opcion `8` para desencolar la cola vacia.
 
 * **Caso 4: Listar colección con el iterador**
 
-Al seleccionar la opcion `7. Historial (pila)` se desplega el menu interactivo.
+Al seleccionar la opcion `7. Historial (pila)` se despliega el menu interactivo.
   
 `1` para ver la playlist, `2`, para ver la cancion actual  y `3` para la cancion anterior.
 
@@ -222,3 +222,147 @@ Usamos `1` para ver la playlist (ref: del caso 3.1) coleccion con el iterador.
   [8] 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
   [9] 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
   ```
+#E4
+**Caso de prueba 1: Búsqueda lineal de un nombre que existe**
+
+Al seleccionar la opcion '3. Buscar' se despliega el menu interactivo.
+
+'1' Para buscar de forma lineal, '2' para buscar de forma binaria y '0' para salir.
+Usamos '1' para buscar de forma lineal.
+ '''text
+ Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir
+ Ingrese opcion: 1
+ Ingresa el nombre: Jijiji
+ ⏱ Tiempo (n=13): 0.000015 s
+ ⏱ Tiempo (n=130): 0.000004 s
+
+
+ Encontrado: 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ '''
+
+**Caso de prueba 2: Búsqueda lineal de un nombre que no existe**
+
+Al seleccionar la opcion '3. Buscar' se despliega el menu interactivo.
+
+'1' Para buscar de forma lineal, '2' para buscar de forma binaria y '0' para salir.
+Usamos '1' para buscar de forma lineal.
+ '''text
+ Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir
+ Ingrese opcion: 1
+ Ingresa el nombre: Amor Ausente
+ ⏱ Tiempo (n=13): 0.000016 s
+ ⏱ Tiempo (n=130): 0.000031 s
+
+ No se encontro el elemento.
+ '''
+
+**Caso de prueba 3: Búsqueda binaria con catálogo desordenado**
+
+Al seleccionar la opcion '3. Buscar' se despliega el menu interactivo.
+
+'1' Para buscar de forma lineal, '2' para buscar de forma binaria y '0' para salir.
+Usamos '2' para buscar de forma binaria
+ ''text
+ Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir
+ Ingrese opcion: 2
+
+ [ALERTA] No se puede ejecutar Búsqueda Binaria.
+ El catálogo no está ordenado por nombre. Por favor, ordénelo primero desde la opción 4.
+ '''
+
+**Caso de prueba 4: Ordenar por un criterio y después por otro **
+
+Al seleccionar la opcion '4. Ordenar' se despliega el menu interactivo.
+
+'1' Para buscar por nombre, '2' para buscar por tiempo, hp o duracion y '0' para salir.
+Usamos '1' para buscar por nombre y se despliega el segundo menu.
+'1' Para buscar por seleccion y '2' para buscar por insercion.
+Usamos '1' para buscar por seleccion y '2' para buscar por insercion.
+Luego repetimos las operaciones con el orden contrario, primero insercion y despues seleccion.
+ '''text
+ Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
+ Ingresa la opcion: 1
+ [1] Seleccion.... | [2] Insercion : 1
+ ⏱ Tiempo (n=13): 0.000063 s
+ ⏱ Tiempo (n=130): 0.001687 s
+
+ ---- Catálogo ordenado por Selección ----
+ 51 | Billie Jean | Michael Jackson | Thriller | Pop
+ 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+ 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+ 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+ 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+ 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+ 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
+ 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
+ 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+
+ Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
+ Ingresa la opcion: 1
+ [1] Seleccion.... | [2] Insercion : 2
+ ⏱ Tiempo (n=13): 0.000028 s
+ ⏱ Tiempo (n=130): 0.001862 s
+
+ ---- Catálogo ordenado por Inserción ----
+ 51 | Billie Jean | Michael Jackson | Thriller | Pop
+ 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+ 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+ 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+ 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+ 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+ 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
+ 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
+ 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+ '''
+Prueba con el orden opuesto:
+ '''text
+ Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
+ Ingresa la opcion: 1
+ [1] Seleccion.... | [2] Insercion : 2
+ ⏱ Tiempo (n=13): 0.000051 s
+ ⏱ Tiempo (n=130): 0.001735 s
+
+ ---- Catálogo ordenado por Inserción ----
+ 51 | Billie Jean | Michael Jackson | Thriller | Pop
+ 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+ 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+ 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+ 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+ 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+ 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
+ 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+
+ Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
+ Ingresa la opcion: 1
+ [1] Seleccion.... | [2] Insercion : 1
+ ⏱ Tiempo (n=13): 0.000051 s
+ ⏱ Tiempo (n=130): 0.002750 s
+
+ ---- Catálogo ordenado por Selección ----
+ 51 | Billie Jean | Michael Jackson | Thriller | Pop
+ 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+ 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+ 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+ 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+ 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+ 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
+ 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+ '''
