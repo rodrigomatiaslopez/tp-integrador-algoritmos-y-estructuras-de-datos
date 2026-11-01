@@ -140,7 +140,7 @@ def main():
             opcion_6 = None
 
             while opcion_6 != 0 :
-                print ("\nOrdenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir")
+                print ("\nOrdenar por: [1] Nombre | [2] Autor | [0] Salir")
                 id_ingresado_5 = int (input ("Ingresa la opcion: "))
 
                 if id_ingresado_5 == 1 :
@@ -179,8 +179,34 @@ def main():
                         print("Opción incorrecta.")
                     
                 elif id_ingresado_5 == 2:
+                    coleccion = int (input ("[1] Seleccion.... | [2] Insercion : "))
+                    if coleccion == 1:
+                        resultado_seleccion = medir_tiempo(
+                            ordenar_seleccion, 
+                            fonoteca.fonoteca, 
+                            obtener_clave=lambda j: j.autor
+                        )
+                                                
+                        # Guardamos el resultado ordenado en el catálogo para que persista
+                        fonoteca.fonoteca = resultado_seleccion
+                        catalogo_ordenado_por = "autor"
+                                                
+                        print("---- Catálogo ordenado por Selección ----")
+                        fonoteca.listar()
 
-                    pendiente ()
+                        
+                    elif coleccion == 2:
+                        resultado_insercion = medir_tiempo(
+                            ordenar_insercion, 
+                            fonoteca.fonoteca, 
+                            obtener_clave=lambda p: p.autor
+                        )
+                        
+                        fonoteca.fonoteca = resultado_insercion
+                        catalogo_ordenado_por = "autor"
+                        
+                        print("---- Catálogo ordenado por Inserción ----")
+                        fonoteca.listar()
 
                 elif id_ingresado_5 == 0:
 

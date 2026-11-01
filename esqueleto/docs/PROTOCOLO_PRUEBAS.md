@@ -274,17 +274,19 @@ Usamos '2' para buscar de forma binaria
 
 Al seleccionar la opcion '4. Ordenar' se despliega el menu interactivo.
 
-'1' Para buscar por nombre, '2' para buscar por tiempo, hp o duracion y '0' para salir.
+'1' Para buscar por nombre, '2' para buscar autor y '0' para salir.
 Usamos '1' para buscar por nombre y se despliega el segundo menu.
+
 '1' Para buscar por seleccion y '2' para buscar por insercion.
-Usamos '1' para buscar por seleccion y '2' para buscar por insercion.
-Luego repetimos las operaciones con el orden contrario, primero insercion y despues seleccion.
+
+Usamos '1' para buscar por seleccion. Luego repetimos la operacion, eligiendo primero '2' para buscar por autor y luego '1' para buscar por seleccion.
+Luego repetimos las mismas operaciones, pero utilizando la opcion '2' de insercion.
  '''text
- Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
+ Ordenar por: [1] Nombre | [2] Autor | [0] Salir
  Ingresa la opcion: 1
  [1] Seleccion.... | [2] Insercion : 1
- ⏱ Tiempo (n=13): 0.000063 s
- ⏱ Tiempo (n=130): 0.001687 s
+ ⏱ Tiempo (n=13): 0.000064 s
+ ⏱ Tiempo (n=130): 0.002893 s
 
  ---- Catálogo ordenado por Selección ----
  51 | Billie Jean | Michael Jackson | Thriller | Pop
@@ -301,57 +303,34 @@ Luego repetimos las operaciones con el orden contrario, primero insercion y desp
  61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
  6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
 
- Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
- Ingresa la opcion: 1
- [1] Seleccion.... | [2] Insercion : 2
- ⏱ Tiempo (n=13): 0.000028 s
- ⏱ Tiempo (n=130): 0.001862 s
-
- ---- Catálogo ordenado por Inserción ----
- 51 | Billie Jean | Michael Jackson | Thriller | Pop
- 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
- 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
- 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
- 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
- 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
- 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
- 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
- 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
- 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
- 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
- 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
- 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
- '''
-Prueba con el orden opuesto:
- '''text
- Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
- Ingresa la opcion: 1
- [1] Seleccion.... | [2] Insercion : 2
- ⏱ Tiempo (n=13): 0.000051 s
- ⏱ Tiempo (n=130): 0.001735 s
-
- ---- Catálogo ordenado por Inserción ----
- 51 | Billie Jean | Michael Jackson | Thriller | Pop
- 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
- 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
- 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
- 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
- 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
- 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
- 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
- 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
- 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
- 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
- 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
- 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
-
- Ordenar por: [1] Nombre | [2] Tiempo / hp / duracion | [0] Salir
- Ingresa la opcion: 1
+ Ordenar por: [1] Nombre | [2] Autor | [0] Salir
+ Ingresa la opcion: 2
  [1] Seleccion.... | [2] Insercion : 1
- ⏱ Tiempo (n=13): 0.000051 s
- ⏱ Tiempo (n=130): 0.002750 s
+ ⏱ Tiempo (n=13): 0.000048 s
+ ⏱ Tiempo (n=130): 0.002478 s
 
  ---- Catálogo ordenado por Selección ----
+ 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
+ 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
+ 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+ 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+ 51 | Billie Jean | Michael Jackson | Thriller | Pop
+ 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+ 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+ 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+ 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+
+ Ordenar por: [1] Nombre | [2] Autor | [0] Salir
+ Ingresa la opcion: 1
+ [1] Seleccion.... | [2] Insercion : 2
+ ⏱ Tiempo (n=13): 0.000057 s
+ ⏱ Tiempo (n=130): 0.001866 s
+ 
+ ---- Catálogo ordenado por Inserción ----
  51 | Billie Jean | Michael Jackson | Thriller | Pop
  52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
  1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
@@ -359,10 +338,31 @@ Prueba con el orden opuesto:
  2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
  4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
  3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
- 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
  13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
  5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
  16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
+
+ Ordenar por: [1] Nombre | [2] Autor | [0] Salir
+ Ingresa la opcion: 2
+ [1] Seleccion.... | [2] Insercion : 2
+ ⏱ Tiempo (n=13): 0.000050 s
+ ⏱ Tiempo (n=130): 0.001580 s
+
+ ---- Catálogo ordenado por Inserción ----
+ 5 | Redemption Song | Bob Marley and The Wailers | Uprising | Roots Reggae
+ 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock
  61 | Sola en los Bares | Eruca Sativa | Dopelganga | Rock
  6 | The Trooper | Iron Maiden | Piece of Mind | Heavy Metal
- '''
+ 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
+ 51 | Billie Jean | Michael Jackson | Thriller | Pop
+ 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
+ 13 | Jijiji | Patricio Rey y sus Redonditos de Ricota | En Directo | Rock
+ 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
+ 2 | El pibe de los astilleros | Patricio Rey y sus redonditos de ricota | La mosca y la sopa | Rock
+ 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
+ 62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
+ 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+'''
