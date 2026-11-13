@@ -3,15 +3,49 @@ from dominio.Fonoteca import Fonoteca, Reproductor
 from excepciones import *
 from algoritmos.busqueda import busqueda_lineal, busqueda_binaria
 from algoritmos.ordenamiento import ordenar_seleccion, ordenar_insercion
+from persistencia import binario, texto
+from persistencia.texto import cargar_texto, guardar_texto
+from persistencia.binario import guardar_binario, cargar_binario
+from dominio.cancion import Cancion, armar_catalogo_desde_txt
+from pathlib import Path
 import time
+
 
 fonoteca = Fonoteca()
 reproductor = Reproductor(catalogo=fonoteca, tope = 10)
+
+RAIZ = Path(__file__).resolve().parents[1]
+DATA = RAIZ / "data"
+
 TEMAS = {
     "pokedex": "Pokédex",
     "recetario": "Recetario",
     "musica": "Biblioteca musical",
 }
+ENCABEZADOS = ["id", "titulo", "artista", "album", "genero", "anio", "duracion_seg"]
+RUTA_TXT = DATA / "canciones.csv"
+RUTA_BIN = DATA / "canciones.bin"
+
+def filas_del_catalogo(catalogo):
+    """Convierte los objetos del dominio en dicts para guardar_texto."""
+    filas = []
+    for c in catalogo: # usa el ITERADOR de la lista (E3)
+        filas.append({
+            "id": c.cancion_id,
+            "titulo": c.nombre,
+            "artista": c.autor,
+            "album": c.album,
+            "genero": c.genero,
+            "anio": c.anio,
+            "duracion_seg": c.duracion_seg
+        })
+    return filas
+
+def guardar_todo(catalogo):
+    """Guarda el catálogo en los dos formatos. Memoria y archivos quedan iguales."""
+    guardar_texto(RUTA_TXT, filas_del_catalogo(catalogo), ENCABEZADOS)
+    guardar_binario(RUTA_BIN, catalogo)
+
 
 def listar_canciones():
     fonoteca.listar()
@@ -56,7 +90,7 @@ def pendiente():
 def mostrar_menu():
     nombre = TEMAS.get(TEMA, TEMA or "(sin tema)")
     print()
-    print(f"=== {nombre} — AyED C2 2026 ===")
+    print(f"==== {nombre} — AyED C2 2026 ====")
     print("1. Listar catálogo")
     print("2. Ver detalle")
     print("3. Buscar")
@@ -81,22 +115,25 @@ def main():
     while opcion != 0:
         mostrar_menu()
         opcion = int (input("> ").strip())
+
         if opcion == 0:
             print("Chau.")
+
         elif opcion == 1:
             listar_canciones ()
+
         elif opcion == 2:
             id_cancion = int (input("Ingrese el ID de la cancion: "))
             mostrar_detalle (id_cancion)
+
         elif opcion == 3:
-
-            opcion_5 = None
-            while opcion_5 != 0:
-
+            subopcion_1 = None
+        
+            while subopcion_1 != 0:
                 print ("\nBuscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir")
-                id_ingresado_4 = int (input ("Ingrese opcion: "))
+                subopcion_1 = int (input ("Ingrese opcion: "))
 
-                if id_ingresado_4 == 1:
+                if subopcion_1 == 1:
                     nombre = str (input ("Ingresa el nombre: "))
                     resultado_lineal = medir_tiempo(
                         busqueda_lineal, 
@@ -108,10 +145,8 @@ def main():
                         print (f"\nEncontrado: {resultado_lineal}")
                     else:
                         print ("No se encontro el elemento.\n")
-                    
-                    
 
-                elif id_ingresado_4 == 2:
+                elif subopcion_1 == 2:
                 # Validar que el catálogo esté ordenado previamente
                     if catalogo_ordenado_por != "nombre":
                         print("\n[ALERTA] No se puede ejecutar Búsqueda Binaria.")
@@ -129,22 +164,21 @@ def main():
                         else:
                             print ("No se encontro el elemento.\n")
                     
-                    
-                elif id_ingresado_4 == 0:
+                elif subopcion_1 == 0:
                     break
 
                 else:
                     print ("Ingrese una opcion correcta.")
 
         elif opcion == 4:
-            opcion_6 = None
+            subopcion_2 = None
 
-            while opcion_6 != 0 :
+            while subopcion_2 != 0 :
                 print ("\nOrdenar por: [1] Nombre | [2] Autor | [0] Salir")
-                id_ingresado_5 = int (input ("Ingresa la opcion: "))
+                subopcion_2 = int (input ("Ingresa la opcion: "))
 
-                if id_ingresado_5 == 1 :
-                    coleccion = int (input ("[1] Seleccion.... | [2] Insercion : "))
+                if subopcion_2 == 1 :
+                    coleccion = int (input ("[1] Seleccion.... | [2] Insercion | [0] Salir: "))
                     if coleccion == 1:
                         resultado_seleccion = medir_tiempo(
                             ordenar_seleccion, 
@@ -159,7 +193,6 @@ def main():
                         print("---- Catálogo ordenado por Selección ----")
                         fonoteca.listar()
 
-                        
                     elif coleccion == 2:
                         resultado_insercion = medir_tiempo(
                             ordenar_insercion, 
@@ -173,12 +206,13 @@ def main():
                         print("---- Catálogo ordenado por Inserción ----")
                         fonoteca.listar()
 
-                    elif opcion_6 == 0:
+                    elif coleccion == 0:
                         pass
                     else: 
                         print("Opción incorrecta.")
+
                     
-                elif id_ingresado_5 == 2:
+                elif subopcion_2 == 2:
                     coleccion = int (input ("[1] Seleccion.... | [2] Insercion : "))
                     if coleccion == 1:
                         resultado_seleccion = medir_tiempo(
@@ -194,7 +228,6 @@ def main():
                         print("---- Catálogo ordenado por Selección ----")
                         fonoteca.listar()
 
-                        
                     elif coleccion == 2:
                         resultado_insercion = medir_tiempo(
                             ordenar_insercion, 
@@ -208,8 +241,8 @@ def main():
                         print("---- Catálogo ordenado por Inserción ----")
                         fonoteca.listar()
 
-                elif id_ingresado_5 == 0:
 
+                elif subopcion_2 == 0:
                     break
 
                 else: 
@@ -218,19 +251,24 @@ def main():
 
         elif opcion == 5:
             operacion_recursiva ()
+
         elif opcion == 6:
         # Colección principal con tope (Playlist)
-            opcion_2 = None
-            while opcion_2 != 0:
-                print ("\n=== Menu: [1] Agregar cancion a la playlist [2] Eliminar cancion de la playlist  [0] Salir ===")
-                opcion_2 = int (input ("Ingrese opcion: "))
+            subopcion_3 = None
+            while subopcion_3 != 0:
+                print ("\n==== Menu: [1] Agregar cancion a la playlist [2] Eliminar cancion de la playlist  [0] Salir ====")
+                subopcion_3 = int (input ("Ingrese opcion: "))
 
-                if opcion_2 == 1 :
-                    id_ingresado = None
-                    while id_ingresado != 0 : 
-                        id_ingresado = int(input("Ingresá el ID de la canción para agregar [0 para finalizar]: "))
+                if subopcion_3 == 1 :
+                    id_ingresado_1 = None
+                    while id_ingresado_1 != 0 : 
+                        id_ingresado_1 = int(input("Ingresá el ID de la canción para agregar [0 para finalizar]: "))
+                        
+                        if id_ingresado_1 == 0 :
+                                    break
+                       
                         try:
-                            reproductor.agregar_playlist(id_ingresado)
+                            reproductor.agregar_playlist(id_ingresado_1)
                             print("+ Canción agregada exitosamente a tu playlist.")
                         except ValueError:
                             print("- Por favor, ingresá un ID numérico válido.")
@@ -241,13 +279,15 @@ def main():
                             print(f"- {e}")
                             break
 
-                        if id_ingresado == 0 :
-                            break
-
-                elif opcion_2 == 2 :
+    
+                elif subopcion_3 == 2 :
                     id_ingresado_2 = None
                     while id_ingresado_2 != 0 : 
                         id_ingresado_2 = int(input("Ingresá el ID de la canción para eliminar [0 para finalizar]: "))
+                        
+                        if id_ingresado_2 == 0 :
+                            break
+                        
                         try:
                             reproductor.eliminar(id_ingresado_2)
                             print("+ Canción eliminada exitosamente a tu playlist.")
@@ -258,24 +298,23 @@ def main():
                             print(f"- {e}")
                             break
 
-                        if id_ingresado_2 == 0 :
-                            break
 
-                elif opcion_2 == 0 :
+                elif subopcion_3 == 0 :
                     break
                 else:
                     print ("Opcion incorrecta.\n")
 
-        elif opcion == 7:
-            opcion_3 = None
-            while opcion_3 != 0:
-                print ("\n=== Menu: [1] Ver playlist [2] Cancion actual [3] Cancion anterior [0] Salir ===")
-                opcion_3 = int (input ("Ingrese opcion: "))
 
-                if opcion_3 == 1 :
+        elif opcion == 7:
+            subopcion_4 = None
+            while subopcion_4 != 0:
+                print ("\n==== Menu: [1] Ver playlist [2] Cancion actual [3] Cancion anterior [0] Salir ====")
+                subopcion_4 = int (input ("Ingrese opcion: "))
+
+                if subopcion_4 == 1 :
                     reproductor.listar_playlist ()
-                elif opcion_3 == 2 :
-                    reproductor.cancion_actual ()
+
+                elif subopcion_4 == 2 :
                     try:
                         cancion_actual = reproductor.cancion_actual()
                         print(f"⏮ Estas escuchando: {cancion_actual.nombre} - {cancion_actual.autor}")
@@ -283,7 +322,7 @@ def main():
                         print(f"- {e}")
                         break
 
-                elif opcion_3 == 3 :
+                elif subopcion_4 == 3 :
                     try:
                         cancion_anterior = reproductor.cancion_anterior()
                         print(f"⏮ Volviendo a escuchar: {cancion_anterior.nombre} - {cancion_anterior.autor}")
@@ -291,17 +330,17 @@ def main():
                         print(f"- {e}")
                         break
 
-                elif opcion_3 == 0 :
+                elif subopcion_4 == 0 :
                     break
                 else :
                     print ("Opcion incorrecta.\n")
 
         elif opcion == 8:
-            opcion_4 = None
-            while opcion_4 != 0 : 
-                print ("\n=== [1] Encolar tema [2] Mostrar lista completa [3] Reproducir | Cancion siguiente [0] Salir ===")
-                opcion_4 = int (input ("Ingrese la opcion: "))
-                if opcion_4 == 1 :
+            subopcion_5 = None
+            while subopcion_5 != 0 : 
+                print ("\n==== [1] Encolar tema [2] Mostrar lista completa [3] Reproducir | Cancion siguiente [0] Salir ====")
+                subopcion_5 = int (input ("Ingrese la opcion: "))
+                if subopcion_5 == 1 :
                     id_ingresado_3 = None     
                     while id_ingresado_3 != 0 :
                         id_ingresado_3 = int(input ("Ingrese la ID de la cancion para agregar a la cola [0 para finalizar]: "))        
@@ -310,26 +349,48 @@ def main():
                         else:
                             reproductor.encolar_tema (id_ingresado_3)
 
-                elif opcion_4 == 2:
+                elif subopcion_5 == 2:
                     try:
                         reproductor.listar_proximos ()
                     except ColaVaciaError as e:
                         print(f"- {e}")
                         break
 
-                elif opcion_4 == 3 :
+                elif subopcion_5 == 3 :
                     try:
                         siguiente_cancion = reproductor.cancion_siguiente()
                         print(f"▶ Sonando ahora: {siguiente_cancion.nombre} - {siguiente_cancion.autor}")
                     except ColaVaciaError as e:
                         print(f"- {e}")
                         break
+
                 
         elif opcion == 9:
-            pendiente ()
-            
-        else:
-            print("Opción inválida.")
+            subopcion_6 = None
+            while subopcion_6 != 0 :
+                print ("\n[1] Cargar catálogo desde el .txt de la cátedra | [2] Guardar catálogo en .txt | [3] Guardar catálogo en binario (.bin) | [4] Cargar catálogo desde binario (.bin) | [0] Salir")
+                subopcion_6 = int (input ("Seleccione una opcion: "))
+
+                try:
+                    if subopcion_6 == 1:
+                        catalogo = armar_catalogo_desde_txt(RUTA_TXT)
+                        print(f"Catálogo cargado: {catalogo.tamanio()} ítems.")
+                    elif subopcion_6 == 2:
+                        guardar_texto(RUTA_TXT, filas_del_catalogo(catalogo), ENCABEZADOS)
+                        print("Catálogo guardado en .txt.")
+                    elif subopcion_6 == 3:
+                        guardar_binario(RUTA_BIN, catalogo) # se define en §4
+                        print("Catálogo guardado en .bin.")
+                    elif subopcion_6 == 4:
+                        catalogo = cargar_binario(RUTA_BIN) # se define en §4
+                        print(f"Catálogo cargado desde .bin: {catalogo.tamanio()} ítems.")
+                    elif subopcion_6 == 0 :
+                        break
+                    else:
+                        print("Opción inválida.")
+                except ArchivoInvalidoError as error:
+                    print(f"Archivo inválido: {error}")
+                   
 
 if __name__ == "__main__":
     main()
