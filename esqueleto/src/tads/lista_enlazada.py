@@ -52,7 +52,7 @@ class ListaEnlazada:
                     return
                 nod_act = nod_act._next
             return
-
+    
     def buscar(self, dato):
         nod_act = self._head
         while nod_act is not None:
@@ -61,6 +61,14 @@ class ListaEnlazada:
             nod_act = nod_act._next
         return None
 
+    def reemplazar_en(self, pos, dato):
+        if pos < 0 or pos >= self._size:
+            raise IndexError(f"Posición {pos} fuera de rango (0..{self._size-1}).")
+        nod_act = self._head
+        for nod in range(pos):
+            nod_act = nod_act._next
+        nod_act._dato = dato
+    
     def __iter__(self):
         return self._Iterador(self._head)
 

@@ -17,7 +17,7 @@ fonoteca = [
     {"cancion_id" : 16, "titulo" : "Sola en los Bares", "autor" : "Man Ray", "album" : "Perro de Playa", "genero" : "Pop Rock", "anio":1991, "duracion":183},
     {"cancion_id" : 51, "titulo" : "Billie Jean", "autor" : "Michael Jackson", "album" : "Thriller", "genero" : "Pop", "anio":1982, "duracion":294},
     {"cancion_id" : 52, "titulo" : "Billie Jean (Remix)", "autor" : "Michael Jackson", "album" : "Thriller 40", "genero" : "Pop", "anio":2022, "duracion":292},
-    {"cancion_id" : 61, "titulo" : "Sola en los Bares", "autor" : "Eruca Sativa", "album" : "Dopelganga", "genero" : "Rock", "anio":206, "duracion":2022},
+    {"cancion_id" : 61, "titulo" : "Sola en los Bares", "autor" : "Eruca Sativa", "album" : "Dopelganga", "genero" : "Rock", "anio":2022, "duracion":206},
     {"cancion_id" : 62, "titulo" : "De musica ligera (Unplugged)", "autor" : "Soda Stereo", "album" : "Comfort y Musica Para Volar", "genero" : "Rock", "anio":1996, "duracion":221}
 ]
 
@@ -26,7 +26,7 @@ class Fonoteca:
     def __init__(self): #Funcion constructora de la Fonoteca, crea la fonoteca como una lista y el versiones.csv como un dataframe
         self.fonoteca = []
         for canc in fonoteca:
-            new_can = Cancion(canc["cancion_id"], canc["titulo"], canc["autor"], canc["album"], canc["genero"])
+            new_can = Cancion(canc["cancion_id"], canc["titulo"], canc["autor"], canc["album"], canc["genero"], canc["anio"], canc["duracion"])
             self.fonoteca.append(new_can)
         base_dir = Path(__file__).resolve().parents[2]
         versiones_path = base_dir / "data" / "versiones.csv"
@@ -74,7 +74,7 @@ class Reproductor:
         self._tope = tope
         self._fonoteca = catalogo
 
-    def agregar_playlist(self, id_cancion) : #se agregan canciones a la playlist con tope maximo de 50
+    def agregar_playlist(self, id_cancion) : #se agregan canciones a la playlist con tope maximo de 10
         cancion = self._fonoteca.buscar(id_cancion)
         if cancion is None:
             raise ItemNoEncontradoError(f"No se encontró ninguna canción con el ID ({id_cancion}) en el catálogo.")    

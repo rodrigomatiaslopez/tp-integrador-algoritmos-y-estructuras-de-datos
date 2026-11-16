@@ -89,9 +89,13 @@ Qué es un ítem del catálogo. Qué es mutable y qué no (E1). Cómo se relacio
 
 ## 6. Persistencia (E5)
 
-- Layout del registro binario (campos, `struct`, anchos):
-- Header:
-- Cómo se actualiza un registro por posición:
+- Layout del registro binario (campos, `struct`, anchos): 'struct.Struct("<I 30s 25s 30s 12s 2H")' = 108 bytes.
+cancion_id (I, 4 B), nombre (30 B), autor (25 B), album (25 B), genero (12 B) ,
+anio | duracion_seg (H, 2 B c/u). Cadenas UTF-8 recortadas/rellenadas con \x00 al ancho fijo.
+- Header: 'struct.Struct("<4s 1s I")' = 9 bytes: magia 'AYED' , tema 'M' , cantidad de registros.
+- Cómo se actualiza un registro por posición: realiza chequeos de seguridad para asegurarse que no haya errores. 
+Luego hace seek(HEADER.size + posicion * FORMATO.size)` y se pisa ese único registro (acceso directo, O(1)).
+El alta hace append al final y arregla la cantidad del header. La baja reescribe el archivo sin ese registro.
 
 ## 7. Reparto de trabajo (E6)
 

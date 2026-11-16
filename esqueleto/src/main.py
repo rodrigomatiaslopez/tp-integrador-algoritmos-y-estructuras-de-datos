@@ -5,7 +5,7 @@ from algoritmos.busqueda import busqueda_lineal, busqueda_binaria
 from algoritmos.ordenamiento import ordenar_seleccion, ordenar_insercion
 from persistencia import binario, texto
 from persistencia.texto import cargar_texto, guardar_texto
-from persistencia.binario import guardar_binario, cargar_binario
+from persistencia.binario import guardar_binario, cargar_binario, posicion_del_id, alta_binario, baja_binario, actualizar_registro
 from dominio.cancion import Cancion, armar_catalogo_desde_txt
 from pathlib import Path
 import time
@@ -25,6 +25,8 @@ TEMAS = {
 ENCABEZADOS = ["id", "titulo", "artista", "album", "genero", "anio", "duracion_seg"]
 RUTA_TXT = DATA / "canciones.csv"
 RUTA_BIN = DATA / "canciones.bin"
+RUTA_TXT_PLAY = DATA / "playlist.csv"
+RUTA_BIN_PLAY = DATA / "playlist.bin"
 
 def filas_del_catalogo(catalogo):
     """Convierte los objetos del dominio en dicts para guardar_texto."""
@@ -120,7 +122,7 @@ def main():
             print("Chau.")
 
         elif opcion == 1:
-            listar_canciones ()
+            listar_canciones()
 
         elif opcion == 2:
             id_cancion = int (input("Ingrese el ID de la cancion: "))
@@ -256,7 +258,7 @@ def main():
         # Colección principal con tope (Playlist)
             subopcion_3 = None
             while subopcion_3 != 0:
-                print ("\n==== Menu: [1] Agregar cancion a la playlist [2] Eliminar cancion de la playlist  [0] Salir ====")
+                print ("\n==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====")
                 subopcion_3 = int (input ("Ingrese opcion: "))
 
                 if subopcion_3 == 1 :
@@ -269,6 +271,8 @@ def main():
                        
                         try:
                             reproductor.agregar_playlist(id_ingresado_1)
+                            nuev_cancion = reproductor._fonoteca.buscar(id_ingresado_1)
+                            alta_binario(RUTA_BIN_PLAY, nuev_cancion)
                             print("+ Canción agregada exitosamente a tu playlist.")
                         except ValueError:
                             print("- Por favor, ingresá un ID numérico válido.")
@@ -278,7 +282,6 @@ def main():
                         except ColeccionLlenaError as e:
                             print(f"- {e}")
                             break
-
     
                 elif subopcion_3 == 2 :
                     id_ingresado_2 = None
@@ -289,8 +292,10 @@ def main():
                             break
                         
                         try:
+                            posicion = posicion_del_id(reproductor._playlist, id_ingresado_2)
                             reproductor.eliminar(id_ingresado_2)
-                            print("+ Canción eliminada exitosamente a tu playlist.")
+                            baja_binario(RUTA_BIN_PLAY, posicion)
+                            print("+ Canción eliminada exitosamente de tu playlist.")
                         except ValueError:
                             print("- Por favor, ingresá un ID numérico válido.")
                             break
@@ -298,6 +303,53 @@ def main():
                             print(f"- {e}")
                             break
 
+                #elif subopcion_3 == 3 :
+                 #   try:
+                  #      lista = cargar_binario(RUTA_BIN_PLAY)
+                   #     for cancion in lista:
+                    #        reproductor.agregar_playlist(cancion.cancion_id)
+                    #except ArchivoInvalidoError as error:
+                     #   print(f"Archivo inválido: {error}")
+                elif subopcion_3 == 3:
+                    try:
+                        lista = cargar_binario(RUTA_BIN_PLAY)
+
+                        print(f"El archivo tiene {lista.tamanio()} canciones.")
+
+                        cargadas = 0
+                        for cancion in lista:
+                            try:
+                                reproductor.agregar_playlist(cancion.cancion_id)
+                                cargadas += 1
+                            except ColeccionLlenaError as e:
+                                print(f"- Playlist llena tras {cargadas} canciones: {e}")
+                                break
+                            except ItemNoEncontradoError as e:
+                                print(f"- ID {cancion.cancion_id} no está en la fonoteca: {e}")
+
+                        print(f"+ {cargadas} canciones cargadas. Playlist actual: {reproductor._playlist.tamanio()} canciones.")
+
+                    except ArchivoInvalidoError as error:
+                        print(f"Archivo inválido: {error}")
+                
+                elif subopcion_3 == 4:
+                    try:
+                        reproductor.listar_playlist()
+                        posicion = int(input("Posición de la canción a reemplazar: "))
+                        id_nuev = int(input("Ingresá el ID de la canción por la que se reemplazará: "))
+                        nuev_cancion = reproductor._fonoteca.buscar(id_nuev)
+                        if nuev_cancion is None:
+                            raise ItemNoEncontradoError(f"ID {id_nuevo} no está en la fonoteca.")
+                        reproductor._playlist.reemplazar_en(posicion, nuev_cancion)
+                        actualizar_registro(RUTA_BIN_PLAY, posicion, nuev_cancion)
+                        print("+ Canción reemplazada exitosamente.")
+
+                    except ValueError:
+                            print("- Por favor, ingresá un ID numérico válido.")
+                            break
+                    except ItemNoEncontradoError as e:
+                            print(f"- {e}")
+                            break
 
                 elif subopcion_3 == 0 :
                     break

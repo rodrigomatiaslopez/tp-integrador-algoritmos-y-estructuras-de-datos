@@ -11,7 +11,7 @@ class Cancion: #Clase basica de una cancion, define su id, nombre, autor, album 
         self.anio = int (anio)
         self.duracion_seg = float (duracion_seg)
 
-    def __str__(self): #Cuando se ejecuta print() sobre una canciones, se corre esta funcion
+    def __str__(self): #Cuando se ejecuta print() sobre una cancion, se corre esta funcion
         resumen = f"{self.cancion_id} | {self.nombre} | {self.autor} | {self.album} | {self.genero} | {self.anio} | {self.duracion_seg}"
         return resumen
 
@@ -20,7 +20,7 @@ def armar_catalogo_desde_txt(ruta):
     """Lee el .txt y devuelve la ListaEnlazada con objetos del dominio."""
     catalogo = ListaEnlazada()
     for fila in cargar_texto(ruta):
-        fonoteca = Cancion(
+        cancion = Cancion(
             cancion_id=int(fila["id"]), # acá se convierten los números
             nombre=fila["titulo"],
             autor=fila["artista"],
@@ -29,14 +29,14 @@ def armar_catalogo_desde_txt(ruta):
             anio=int(fila["anio"]),
             duracion_seg=float(fila["duracion_seg"])
         )
-        catalogo.insertar_al_final(fonoteca)
+        catalogo.insertar_al_final(cancion)
     return catalogo
 
-def armar_evoluciones_desde_txt(ruta):
+def armar_versiones_desde_txt(ruta):
     """Devuelve un dict {origen_id: [destino_id, ...]} para la recursión de E2."""
-    evoluciones = {}
+    versiones = {}
     for fila in cargar_texto(ruta):
         origen = int(fila["cancion_id"])
         destino = int(fila["version_de_id"])
-        evoluciones.setdefault(origen, []).append(destino)
-    return evoluciones
+        versiones.setdefault(origen, []).append(destino)
+    return versiones

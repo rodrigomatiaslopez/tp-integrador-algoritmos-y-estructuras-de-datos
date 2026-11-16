@@ -20,9 +20,9 @@ Mínimos: 8 casos escritos en E2; ejecutados en E3; 15 de regresión en E6 (pila
 | P10 | E4 | Búsqueda lineal de un nombre que no existe |  | no encontrado, sin traceback | no encontro el elemento, no emitio traceback |  |
 | P11 | E4 | Búsqueda binaria con catálogo desordenado |  | avisa o reordena; no da un falso hit | aviso que el catalogo esta desornedado y cancelo la busqueda  |  |
 | P12 | E4 | Ordenar por un criterio y después por otro |  | el orden cambia | no hay cambios en el orden, pero sí en el tiempo de ejecucion |  |
-| P13 | E5 | Guardar CSV, salir, volver a entrar |  | los datos siguen |  |  |
-| P14 | E5 | Guardar binario y modificar un registro por id |  | al recargar, ese campo cambió |  |  |
-| P15 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido |  |  |
+| P13 | E5 | Guardar CSV, salir, volver a entrar | dataset armado por el grupo | los datos siguen | los datos siguieron estando |  |
+| P14 | E5 | Guardar binario y modificar un registro por id | dataset armado por el grupo | al recargar, ese campo cambió | al recargar, ese campo efectivamente cambió |  |
+| P15 | E5 | Abrir un binario truncado o con magia mala | archivo basura | excepción de archivo inválido | las excepciones de los 3 casos fueron las esperadas |  |
 
 # E2
 * **Caso de prueba 1: Arranque y visualización del menú**
@@ -365,4 +365,220 @@ Luego repetimos las mismas operaciones, pero utilizando la opcion '2' de inserci
  1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
  62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
  4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
+'''
+
+# E5
+* **Caso de prueba 1: Guardar CSV, salir, volver a entrar**
+Al seleccionar la opcion 6. Colección principal (playlist) se despliega el menú interactivo.
+ '1' para gregar cancion a la playlist,  '2' para eliminar una cancion de la playlist,  '3' para cargar una playlist,
+ '4' para eeemplazar una cancion en la playlist y '0' para salir.
+Se selecciona 3 para cargar una playlist previa, y luego '1' para agregar una canción.
+Se agrega por id la cancion 51, Billy Jean, y luego se cierra el programa.
+Luego se vuelve a abrir el prograama y se carga la playlist.
+ '''text
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+El archivo tiene 3 canciones.
+1 | De musica ligera | Soda Stereo | Cancion Animal | Rock | 1990 | 213.0 || Agregada a la playlist....
+3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock | 1988 | 451.0 || Agregada a la playlist....
+4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore | 2001 | 210.0 || Agregada a la playlist....
++ 3 canciones cargadas. Playlist actual: 3 canciones.
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 1
+Ingresá el ID de la canción para agregar [0 para finalizar]: 51
+51 | Billie Jean | Michael Jackson | Thriller | Pop | 1982 | 294.0 || Agregada a la playlist....
++ Canción agregada exitosamente a tu playlist.
+Ingresá el ID de la canción para agregar [0 para finalizar]: 0
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 0
+
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 0
+Chau.
+
+C:\path>py -m main
+
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 6
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+El archivo tiene 4 canciones.
+1 | De musica ligera | Soda Stereo | Cancion Animal | Rock | 1990 | 213.0 || Agregada a la playlist....
+3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock | 1988 | 451.0 || Agregada a la playlist....
+4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore | 2001 | 210.0 || Agregada a la playlist....
+51 | Billie Jean | Michael Jackson | Thriller | Pop | 1982 | 294.0 || Agregada a la playlist....
++ 4 canciones cargadas. Playlist actual: 4 canciones.
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion:
+'''
+
+**Caso de prueba 2: Guardar binario y modificar un registro por id**
+Se cargo el menú con la opción '6'. Al aparecer el menú interactivo, se eligió la opción '3' para cargar la playlist.
+Una vez cargada la playlist, se utilizo la opcion '4' para modificar una cancion, eligiendola por su posicion y reemplazandola por 
+otra a partir de su ID. Finalmente se cerro el programa y se volvio a abrir. Nuevamente se cargó el menú interactivo '6' y se eligio la opción '3'.
+Los cambios en la playlist efectivamente se mantuvieron.
+ '''text
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 6
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+El archivo tiene 4 canciones.
+1 | De musica ligera | Soda Stereo | Cancion Animal | Rock | 1990 | 213.0 || Agregada a la playlist....
+3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock | 1988 | 451.0 || Agregada a la playlist....
+4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore | 2001 | 210.0 || Agregada a la playlist....
+51 | Billie Jean | Michael Jackson | Thriller | Pop | 1982 | 294.0 || Agregada a la playlist....
++ 4 canciones cargadas. Playlist actual: 4 canciones.
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 4
+--- Mi Playlist ---
+[0] 1 | De musica ligera | Soda Stereo | Cancion Animal | Rock | 1990 | 213.0
+[1] 3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock | 1988 | 451.0
+[2] 4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore | 2001 | 210.0
+[3] 51 | Billie Jean | Michael Jackson | Thriller | Pop | 1982 | 294.0
+Posición de la canción a reemplazar: 2
+Ingresá el ID de la canción por la que se reemplazará: 12
++ Canción reemplazada exitosamente.
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 0
+
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 0
+Chau.
+
+C:\path>py -m main
+
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 6
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+El archivo tiene 4 canciones.
+1 | De musica ligera | Soda Stereo | Cancion Animal | Rock | 1990 | 213.0 || Agregada a la playlist....
+3 | Hombre en U | DIVIDIDOS | Amapola del 66 | Rock | 1988 | 451.0 || Agregada a la playlist....
+12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock | 1986 | 240.0 || Agregada a la playlist....
+51 | Billie Jean | Michael Jackson | Thriller | Pop | 1982 | 294.0 || Agregada a la playlist....
++ 4 canciones cargadas. Playlist actual: 4 canciones.
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion:
+'''
+
+**Caso de prueba 3: Abrir un binario truncado o con magia mala(Binario Corto)**
+Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para cargar el binario.
+ '''text
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 6
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+Archivo inválido: Binario truncado: el header dice más registros de los que hay.
+'''
+
+**Caso de prueba 4: Abrir un binario truncado o con magia mala(Magia Incorrecta)**
+Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para cargar el binario.
+ '''text
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 6
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+Archivo inválido: Magia incorrecta: este archivo no es de este TP.
+'''
+
+**Caso de prueba 5: Abrir un binario truncado o con magia mala(Archivo Roto)**
+Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para cargar el binario.
+ '''text
+==== Biblioteca musical — AyED C2 2026 ====
+1. Listar catálogo
+2. Ver detalle
+3. Buscar
+4. Ordenar
+5. Operación recursiva
+6. Colección principal (playlist)
+7. Historial (pila)
+8. Cola
+9. Guardar / cargar archivos
+0. Salir
+> 6
+
+==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
+Ingrese opcion: 3
+Archivo inválido: El archivo tiene 7 bytes mas de los declarados
 '''
