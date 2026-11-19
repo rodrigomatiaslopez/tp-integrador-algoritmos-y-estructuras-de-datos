@@ -222,14 +222,14 @@ Usamos `1` para ver la playlist (ref: del caso 3.1) coleccion con el iterador.
   [8] 16 | Sola en los Bares | Man Ray | Perro de Playa | Pop Rock
   [9] 52 | Billie Jean (Remix) | Michael Jackson | Thriller 40 | Pop
   ```
-#E4
+# E4
 **Caso de prueba 1: Búsqueda lineal de un nombre que existe**
 
 Al seleccionar la opcion '3. Buscar' se despliega el menu interactivo.
 
 '1' Para buscar de forma lineal, '2' para buscar de forma binaria y '0' para salir.
 Usamos '1' para buscar de forma lineal.
- '''text
+ ```text
  Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir
  Ingrese opcion: 1
  Ingresa el nombre: Jijiji
@@ -238,7 +238,7 @@ Usamos '1' para buscar de forma lineal.
 
 
  Encontrado: 12 | Jijiji | Patricio Rey y sus Redonditos de Ricota | Un Baion para el Ojo Idiota | Rock
- '''
+ ```
 
 **Caso de prueba 2: Búsqueda lineal de un nombre que no existe**
 
@@ -246,7 +246,7 @@ Al seleccionar la opcion '3. Buscar' se despliega el menu interactivo.
 
 '1' Para buscar de forma lineal, '2' para buscar de forma binaria y '0' para salir.
 Usamos '1' para buscar de forma lineal.
- '''text
+ ```text
  Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir
  Ingrese opcion: 1
  Ingresa el nombre: Amor Ausente
@@ -254,7 +254,7 @@ Usamos '1' para buscar de forma lineal.
  ⏱ Tiempo (n=130): 0.000031 s
 
  No se encontro el elemento.
- '''
+ ```
 
 **Caso de prueba 3: Búsqueda binaria con catálogo desordenado**
 
@@ -262,13 +262,13 @@ Al seleccionar la opcion '3. Buscar' se despliega el menu interactivo.
 
 '1' Para buscar de forma lineal, '2' para buscar de forma binaria y '0' para salir.
 Usamos '2' para buscar de forma binaria
- ''text
+```text
  Buscar por: [1] Nombre (lineal) | [2] Nombre (binaria) | [0] Salir
  Ingrese opcion: 2
 
  [ALERTA] No se puede ejecutar Búsqueda Binaria.
  El catálogo no está ordenado por nombre. Por favor, ordénelo primero desde la opción 4.
- '''
+ ```
 
 **Caso de prueba 4: Ordenar por un criterio y después por otro **
 
@@ -281,7 +281,7 @@ Usamos '1' para buscar por nombre y se despliega el segundo menu.
 
 Usamos '1' para buscar por seleccion. Luego repetimos la operacion, eligiendo primero '2' para buscar por autor y luego '1' para buscar por seleccion.
 Luego repetimos las mismas operaciones, pero utilizando la opcion '2' de insercion.
- '''text
+ ```text
  Ordenar por: [1] Nombre | [2] Autor | [0] Salir
  Ingresa la opcion: 1
  [1] Seleccion.... | [2] Insercion : 1
@@ -365,7 +365,7 @@ Luego repetimos las mismas operaciones, pero utilizando la opcion '2' de inserci
  1 | De musica ligera | Soda Stereo | Cancion Animal | Rock
  62 | De musica ligera (Unplugged) | Soda Stereo | Comfort y Musica Para Volar | Rock
  4 | El tren del cielo | Soledad Pastorutti | Libre | Folklore
-'''
+```
 
 # E5
 * **Caso de prueba 1: Guardar CSV, salir, volver a entrar**
@@ -375,7 +375,7 @@ Al seleccionar la opcion 6. Colección principal (playlist) se despliega el men�
 Se selecciona 3 para cargar una playlist previa, y luego '1' para agregar una canción.
 Se agrega por id la cancion 51, Billy Jean, y luego se cierra el programa.
 Luego se vuelve a abrir el prograama y se carga la playlist.
- '''text
+ ```text
 ==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
 Ingrese opcion: 3
 El archivo tiene 3 canciones.
@@ -407,9 +407,11 @@ Ingrese opcion: 0
 0. Salir
 > 0
 Chau.
+```
 
 C:\path>py -m main
 
+```text
 ==== Biblioteca musical — AyED C2 2026 ====
 1. Listar catálogo
 2. Ver detalle
@@ -434,14 +436,14 @@ El archivo tiene 4 canciones.
 
 ==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
 Ingrese opcion:
-'''
+```
 
 **Caso de prueba 2: Guardar binario y modificar un registro por id**
 Se cargo el menú con la opción '6'. Al aparecer el menú interactivo, se eligió la opción '3' para cargar la playlist.
 Una vez cargada la playlist, se utilizo la opcion '4' para modificar una cancion, eligiendola por su posicion y reemplazandola por 
 otra a partir de su ID. Finalmente se cerro el programa y se volvio a abrir. Nuevamente se cargó el menú interactivo '6' y se eligio la opción '3'.
 Los cambios en la playlist efectivamente se mantuvieron.
- '''text
+ ```text
 ==== Biblioteca musical — AyED C2 2026 ====
 1. Listar catálogo
 2. Ver detalle
@@ -491,9 +493,10 @@ Ingrese opcion: 0
 0. Salir
 > 0
 Chau.
+```
 
 C:\path>py -m main
-
+```text
 ==== Biblioteca musical — AyED C2 2026 ====
 1. Listar catálogo
 2. Ver detalle
@@ -518,11 +521,11 @@ El archivo tiene 4 canciones.
 
 ==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
 Ingrese opcion:
-'''
+```
 
 **Caso de prueba 3: Abrir un binario truncado o con magia mala(Binario Corto)**
 Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para cargar el binario.
- '''text
+ ```text
 ==== Biblioteca musical — AyED C2 2026 ====
 1. Listar catálogo
 2. Ver detalle
@@ -539,11 +542,11 @@ Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para 
 ==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
 Ingrese opcion: 3
 Archivo inválido: Binario truncado: el header dice más registros de los que hay.
-'''
+```
 
 **Caso de prueba 4: Abrir un binario truncado o con magia mala(Magia Incorrecta)**
 Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para cargar el binario.
- '''text
+ ```text
 ==== Biblioteca musical — AyED C2 2026 ====
 1. Listar catálogo
 2. Ver detalle
@@ -560,11 +563,11 @@ Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para 
 ==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
 Ingrese opcion: 3
 Archivo inválido: Magia incorrecta: este archivo no es de este TP.
-'''
+```
 
 **Caso de prueba 5: Abrir un binario truncado o con magia mala(Archivo Roto)**
 Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para cargar el binario.
- '''text
+ ```text
 ==== Biblioteca musical — AyED C2 2026 ====
 1. Listar catálogo
 2. Ver detalle
@@ -581,4 +584,4 @@ Se abrio el menú interactivo con la opción '6'. Se eligio la opción '3' para 
 ==== Menu: [1] Agregar cancion a la playlist  [2] Eliminar cancion de la playlist  [3] Cargar playlist [4] Reemplazar cancion de la playlist [0] Salir ====
 Ingrese opcion: 3
 Archivo inválido: El archivo tiene 7 bytes mas de los declarados
-'''
+```
