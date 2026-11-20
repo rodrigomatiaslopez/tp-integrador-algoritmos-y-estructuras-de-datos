@@ -75,7 +75,14 @@ def guardar_binario(ruta, catalogo):
 
 def cargar_binario(ruta):
     """Lee el binario con validaciones. Devuelve la ListaEnlazada de ítems."""
-    with open(ruta, "rb") as archivo:
+    try:
+        archivo = open(ruta, "rb")  
+    except FileNotFoundError:
+        #creamos el archivo vacio si no lo encuentra
+        with open(ruta, "wb") as nuevo:
+            nuevo.write(HEADER.pack(b"AYED", TEMA, 0))
+        return ListaEnlazada()    
+    with archivo:
         cabecera = archivo.read(HEADER.size)
         if len(cabecera) < HEADER.size:
             raise ArchivoInvalidoError("Binario truncado: no tiene header completo.")
