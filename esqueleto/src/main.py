@@ -126,7 +126,7 @@ def main():
 
         elif opcion == 2:
             id_cancion = int (input("Ingrese el ID de la cancion: "))
-            mostrar_detalle (id_cancion)
+            mostrar_detalle(id_cancion)
 
         elif opcion == 3:
             subopcion_1 = None
@@ -139,7 +139,7 @@ def main():
                     nombre = str (input ("Ingresa el nombre: "))
                     resultado_lineal = medir_tiempo(
                         busqueda_lineal, 
-                        fonoteca.fonoteca, 
+                        list(fonoteca.fonoteca), 
                         nombre, 
                         obtener_clave=lambda x: x.nombre
                     )
@@ -157,7 +157,7 @@ def main():
                         nombre = str (input ("Ingresa el nombre: "))
                         resultado_binaria = medir_tiempo(
                             busqueda_binaria, 
-                            fonoteca.fonoteca, 
+                            list(fonoteca.fonoteca), 
                             nombre, 
                             obtener_clave=lambda i: i.nombre
                         )
@@ -184,7 +184,7 @@ def main():
                     if coleccion == 1:
                         resultado_seleccion = medir_tiempo(
                             ordenar_seleccion, 
-                            fonoteca.fonoteca, 
+                            list(fonoteca.fonoteca), 
                             obtener_clave=lambda j: j.nombre
                         )
                                                 
@@ -198,7 +198,7 @@ def main():
                     elif coleccion == 2:
                         resultado_insercion = medir_tiempo(
                             ordenar_insercion, 
-                            fonoteca.fonoteca, 
+                            list(fonoteca.fonoteca), 
                             obtener_clave=lambda p: p.nombre
                         )
                         
@@ -219,7 +219,7 @@ def main():
                     if coleccion == 1:
                         resultado_seleccion = medir_tiempo(
                             ordenar_seleccion, 
-                            fonoteca.fonoteca, 
+                            list(fonoteca.fonoteca), 
                             obtener_clave=lambda j: j.autor
                         )
                                                 
@@ -233,7 +233,7 @@ def main():
                     elif coleccion == 2:
                         resultado_insercion = medir_tiempo(
                             ordenar_insercion, 
-                            fonoteca.fonoteca, 
+                            list(fonoteca.fonoteca), 
                             obtener_clave=lambda p: p.autor
                         )
                         
@@ -427,6 +427,7 @@ def main():
                     if subopcion_6 == 1:
                         catalogo = armar_catalogo_desde_txt(RUTA_TXT)
                         print(f"Catálogo cargado: {catalogo.tamanio()} ítems.")
+                        fonoteca.fonoteca = catalogo
                     elif subopcion_6 == 2:
                         guardar_texto(RUTA_TXT, filas_del_catalogo(catalogo), ENCABEZADOS)
                         print("Catálogo guardado en .txt.")
@@ -436,6 +437,7 @@ def main():
                     elif subopcion_6 == 4:
                         catalogo = cargar_binario(RUTA_BIN) # se define en §4
                         print(f"Catálogo cargado desde .bin: {catalogo.tamanio()} ítems.")
+                        fonoteca.fonoteca = catalogo
                     elif subopcion_6 == 0 :
                         break
                     else:

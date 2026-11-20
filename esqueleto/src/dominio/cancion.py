@@ -15,6 +15,9 @@ class Cancion: #Clase basica de una cancion, define su id, nombre, autor, album 
         resumen = f"{self.cancion_id} | {self.nombre} | {self.autor} | {self.album} | {self.genero} | {self.anio} | {self.duracion_seg}"
         return resumen
 
+    def resumir(self): #Cuando se desea ver el detalle de una cancion, se corre esta funcion
+        resumen = f"Año: {self.anio} | Duracion: {self.duracion_seg} segundos | Titulo: {self.nombre}"
+        return resumen
     
 def armar_catalogo_desde_txt(ruta):
     """Lee el .txt y devuelve la ListaEnlazada con objetos del dominio."""

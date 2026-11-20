@@ -101,4 +101,6 @@ El alta hace append al final y arregla la cantidad del header. La baja reescribe
 
 | Integrante | Qué hizo | Qué puede defender |
 | --- | --- | --- |
-|  |  |  |
+| Camila Belen Passini | Realizo pruebas y ensayos, participo del código, desarrollo los Tads y la estructura de fonoteca | Tads, Fonoteca, Main |
+| Emiliano Nicolas Blanco | Participó del código, corrigió bugs, Hizo las pruebas de tiempo y la persistencia | Dominio, Persistencia, Main |
+| Camila Belen Passini | Realizo pruebas y ensayo, participo del código, armo el dominio y los algoritmos | Dominio, Algoritmos, Main |

@@ -6,11 +6,11 @@ Repositorio del grupo. Partir de este esqueleto. No borrar la estructura de `src
 
 | Nombre | Mail | GitHub |
 | --- | --- | --- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| Rodrigo Matias Lopez | rodlopez003@gmail.com | rodrigomatiaslopez |
+| Camila Belen Passini | camilitapass@yahoo.com.ar | camipass |
+| Emiliano Nicolas Blanco | emilianonicblanco@gmail.com | Longchamps27 |
 
-**Tema elegido:** Pokédex / Recetario / Biblioteca musical (dejar uno)
+**Tema elegido:** Biblioteca musical
 
 ## Cómo ejecutar
 
@@ -23,6 +23,22 @@ python -m src.main
 En Windows, si `python` no anda: `py -3 -m src.main`.
 
 Solo biblioteca estándar. No hay `requirements.txt` a propósito.
+
+## Que hace
+Menu de catálogo de una biblioteca musical con las siguientes 9 operaciones:
+-Listar el catálogo
+-Ver detalles de una canción del catálogo
+-Buscar (lineal y binaria)
+-Ordenar (selección e inserción)
+-Operación recursiva (Detección de todas las versiones de una cancion) 
+-Armado de playlist con tope de 10
+-Historial (pila de la playlist)
+-Cola
+-Guardado y lectura de la biblioteca musical en .txt y binario con struct
+
+## Que no hace
+Los archivos de prueba para errores del guardado y lectura en .txt y binario fueron armados a mano,
+el programa no los puede generar. Si puede crear una playlist vacia en caso de que no exista ninguna.
 
 ## Entregas
 

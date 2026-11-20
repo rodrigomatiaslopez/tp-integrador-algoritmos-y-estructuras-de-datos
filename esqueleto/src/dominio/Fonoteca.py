@@ -56,14 +56,14 @@ class Fonoteca:
                 resultado += self.versiones_deriv(idv_deriv)
         return resultado
 
-    def mostrar_detalle (self, cancion) : #funcion que busca la id de la cancion y devuelve los detalles
-        for can in fonoteca :
-            if can ["cancion_id"] == cancion:
-                print (f"Año: {can["anio"]} | Duracion: {can["duracion"]} segundos | Titulo: {can ["titulo"]}")
-                return
-            
-        print (f"ID ({cancion}) no existe en la lista de canciones")
-
+    def mostrar_detalle (self, cancion_id) : #funcion que busca la id de la cancion y devuelve los detalles
+        can = self.buscar(cancion_id)
+        if can is None:
+            print (f"ID ({cancion}) no existe en la lista de canciones")
+            return
+        print(can.resumir())
+        #print (f"Año: {can["anio"]} | Duracion: {can["duracion"]} segundos | Titulo: {can ["titulo"]}")
+        
     
 class Reproductor:
 
